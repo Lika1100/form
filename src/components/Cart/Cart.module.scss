@@ -10,7 +10,6 @@
     &__item {
         display: flex;
         gap: 24px;
-        font-family: "Roboto";
         align-items: center;
         justify-content: space-between;
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
@@ -52,7 +51,6 @@
 
     &__counterButton {
         display: block;
-        font-family: "Roboto";
         text-align: center;
         justify-content: center;
         color: $button-primary-text-hover;
