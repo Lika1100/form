@@ -1,0 +1,39 @@
+@import "styles/styles";
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &__inputText {
+        width: 90%;
+        height: 52px;
+        padding: 16px 12px;
+
+        &::placeholder {
+            color: $input-placeholder;
+        }
+
+        &:focus {
+            outline-color: $input-border-focus;
+        }
+    }
+
+    &__inputSubmit {
+        padding: 17px 32px;
+        background-color: $button-primary-bg;
+        color: $button-primary-text-hover;
+        opacity: 1;
+        transition: all 200ms ease-in-out;
+
+        &:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        &:active {
+            opacity: 1;
+            background-color: $button-primary-bg-active;
+        }
+    }
+}

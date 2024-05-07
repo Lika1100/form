@@ -1,0 +1,70 @@
+@import "styles/styles";
+
+.dropdown_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    width: 350px;
+    height: 52px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    &__form {
+        display: flex;
+    }
+
+    &__inputText {
+        position: relative;
+        padding: 16px 20px 16px 12px;
+        width: 350px;
+        height: 52px;
+
+        &:focus {
+            outline-color: $input-border-focus;
+        }
+
+        &::placeholder {
+            color: $input-placeholder;
+        }
+    }
+
+    &__arrow {
+        position: absolute;
+        right: 20px;
+        top: 14px;
+        width: 24px;
+        height: 24px;
+        transform: rotate(-90deg);
+        transition: all 200ms linear;
+
+        &_open {
+            transform: rotate(0deg);
+        }
+    }
+
+    &__list {
+        background-color: $input-bg;
+        display: flex;
+        flex-direction: column;
+        max-height: 300px;
+        overflow-y: scroll;
+        position: absolute;
+        top: 60px;
+        left: 0px;
+        width: 100%;
+    }
+
+    &__listItem {
+        cursor: pointer;
+        list-style: none;
+
+        &_active {
+            color: $text-accent;
+        }
+
+        &:hover {
+            color: $text-secondary;
+        }
+    }
+}

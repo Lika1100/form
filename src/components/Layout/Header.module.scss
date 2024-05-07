@@ -1,0 +1,141 @@
+@import "styles/styles";
+
+.header {
+    position: fixed;
+    max-width: 1240px;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    max-height: 90px;
+    align-items: center;
+    background-color: $card-bg;
+    border-bottom: 2px solid rgba(243, 243, 243, 1);
+    z-index: 999;
+
+    &__logo {
+        width: 130px;
+        height: 42px;
+        cursor: pointer;
+    }
+
+    &__burgerImg {
+        display: none;
+    }
+
+    &__closeImg {
+        display: none;
+    }
+
+    &__items {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    &__item {
+        cursor: pointer;
+        position: relative;
+        transition: all 200ms ease-in;
+
+        &:hover {
+            color: $text-accent;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            border-bottom: 3px solid $text-accent;
+            width: 100%;
+            left: 0;
+            bottom: -10px;
+            transition: all 200ms ease-in;
+            opacity: 0;
+        }
+
+        &:hover:after {
+            opacity: 1;
+        }
+    }
+
+
+
+    &__icons {
+        display: flex;
+        gap: 24px;
+    }
+
+    &__iconCart,
+    &__iconUser {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: all 200ms ease-in;
+        opacity: 1;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        z-index: 999;
+
+        &__burger {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(240, 240, 240, 1);
+            transform: translateX(-100vw);
+            transition: transform 300ms linear;
+        }
+
+        &__burger_open {
+            transform: translateX(0);
+        }
+
+        &__logo {
+            display: none;
+        }
+
+        &__burgerImg {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        &__closeImg {
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            top: 0;
+            right: 30px;
+            cursor: pointer;
+        }
+
+        &__items {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 50px;
+            font-size: 24px;
+        }
+
+        &__item {
+            &:hover {
+                color: #afadb5;
+            }
+        }
+    }
+}

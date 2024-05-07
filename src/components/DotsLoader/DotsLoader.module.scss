@@ -1,0 +1,40 @@
+@import "styles/styles";
+
+.dots {
+    width: 180px;
+    height: 100px;
+    display: flex;
+    margin-bottom: 100px;
+    text-align: center;
+
+    &__dot {
+        width: 10px;
+        height: 10px;
+        background: $loader-bg;
+        border-radius: 50%;
+        margin: 0 15px;
+        animation: jump 1s linear infinite;
+
+        &_2 {
+            animation-delay: 0.2s;
+        }
+
+        &_3 {
+            animation-delay: 0.4s;
+        }
+    }
+}
+
+@keyframes jump {
+    0% {
+        margin-top: 0;
+    }
+
+    35% {
+        margin-top: -75px;
+    }
+
+    70% {
+        margin-top: 0px;
+    }
+}

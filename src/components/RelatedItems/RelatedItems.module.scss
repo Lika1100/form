@@ -1,0 +1,16 @@
+.related {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 48px;
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(3, 33%);
+        gap: 8px;
+    }
+
+    &__card {
+        width: 360px;
+    }
+}

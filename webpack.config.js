@@ -5,6 +5,7 @@ const TsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 const buildPath = path.resolve(__dirname, 'dist');
 const srcPath = path.resolve(__dirname, 'src');
 const isProd = process.env.NODE_ENV === 'production'; 
+const nodeModulesPath = path.resolve(__dirname, "node_modules");
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getSettingsForStyles = (withModules = false) => {
@@ -18,6 +19,7 @@ const getSettingsForStyles = (withModules = false) => {
             modules: {
               localIdentName: !isProd ? '[path][name]__[local]' : '[hash:base64]',
             },
+            //esModule: false
           },
         },
     {
@@ -28,7 +30,7 @@ const getSettingsForStyles = (withModules = false) => {
         },
       },
     },
-    'sass-loader',
+    'sass-loader'
   ];
 };
 
@@ -84,13 +86,15 @@ module.exports = {
          new TsCheckerPlugin ()
     ],
     resolve: {
-                extensions: ['.tsx', '.jsx', '.js', '.ts'],
+                extensions: ['.tsx', '.jsx', '.js', '.ts', '.scss'],
                 alias: {
                     components: path.join(srcPath, 'components'),
-                    config: path.join(srcPath, 'config'),
+                    configs: path.join(srcPath, 'configs'),
                     styles: path.join(srcPath, 'styles'),
                     utils: path.join(srcPath, 'utils'),
-                    models: path.join(srcPath, 'models'),
+                    store: path.join(srcPath, 'store'),
+                    pages: path.join(srcPath, 'pages'),
+                    App: path.join(srcPath, 'App'),
                 }
             },
 }

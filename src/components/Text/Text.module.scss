@@ -1,0 +1,36 @@
+
+.text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    &_title {
+        line-height: 38px;
+        font-size: 36px;
+    }
+
+    &_button {
+        line-height: 18px;
+        font-size: 18px;
+    }
+
+    &_p-20 {
+        line-height: 24px;
+        font-size: 20px;
+    }
+
+    &_p-18 {
+        line-height: 22px;
+        font-size: 18px;
+    }
+
+    &_p-16 {
+        line-height: 20px;
+        font-size: 16px;
+    }
+
+    &_p-14 {
+        line-height: 18px;
+        font-size: 14px;
+    }
+}

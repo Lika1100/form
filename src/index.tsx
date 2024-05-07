@@ -1,22 +1,13 @@
-import * as React from  'react';
-import {render} from 'react-dom';
-import "./index.scss";
-//import styles from "./styles.module.scss"
-const styles = require("./styles.module.scss")
-import App from "./App"
-
-type Props = {
-    children: React.ReactNode;
-}
-
-const Button: React.FC<Props> = ({children}: Props) =>{
-    return <div onClick={() => console.log("hello")}>{children}</div>
-}
-
-//<div className='title'>React приложение <Button>Hello</Button><div className={styles.img}></div> </div>
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import "styles/styles.scss";
+import "configs/configureMobX";
+import { BrowserRouter } from 'react-router-dom';
+import App from './App/App';
 
 
-render(<App />, document.getElementById('root')); 
+
+ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><BrowserRouter>< App /></BrowserRouter></React.StrictMode>)
 
 if (module.hot) {
     module.hot.accept()
