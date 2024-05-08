@@ -11,6 +11,8 @@ export function deleteElement(product: (ProductModel & Count)): void {
       title: product.title,
       price: product.price,
       images: product.images,
+      description: product.description,
+      category: product.category,
       count: 1
     };
     const ids = events.map((x) => x.id)

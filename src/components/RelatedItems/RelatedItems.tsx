@@ -27,15 +27,16 @@ function RelatedItems({categoryId}: RelatedType) {
         </Text>
         <div className={styles.related__cards}>
             {meta === Meta.success && (
-            list.map(({id, images, title, price, description}) => {
+            list.map(({id, images, title, price, description, category}) => {
                     return (
                         <div key={id} className={styles.related__card}>
                             <Card 
                                 id={id} 
                                 images={images} 
-                                title={title}
-                                price={price}
-                                description={description}
+                                title={title!}
+                                price={price!}
+                                description={description!}
+                                category = {category!}
                             />
                         </div>
                     )

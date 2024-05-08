@@ -7,17 +7,19 @@ import useNavigatePages from "configs/useNavigatePages";
 import { addProducts } from "utils/CartEvents/addProducts";
 import img from "../../assets/imgSoon.jpg"
 import styles from "./Card.module.scss";
+import { CategoryModel } from "store/models/products";
 
 export type CardProps = {
     id: number;
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
     images: string[];
-    price?: number;
-    className?: string
+    price: number;
+    className?: string,
+    category: CategoryModel
 };
 
-const Card: React.FC<CardProps> = ({ id, title, description, images, price, className }) => {
+const Card: React.FC<CardProps> = ({ id, title, description, images, price, className, category }) => {
     const {goToProduct} = useNavigatePages()
     
     return (
@@ -34,7 +36,7 @@ const Card: React.FC<CardProps> = ({ id, title, description, images, price, clas
                 <div className={styles.card__footer}>
                     <Text view='p-18' weight='bold'>{`$${price}`}</Text>
                     <Button 
-                      onClick={() => addProducts({id, price, title, images, count: 1})}
+                      onClick={() => addProducts({id, price, title, images, count: 1, description, category})}
                       disabled={false} 
                       className={""}>
                         Add to Cart

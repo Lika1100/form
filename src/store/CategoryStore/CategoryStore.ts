@@ -1,15 +1,15 @@
 import { action, computed, makeObservable, observable, runInAction } from "mobx"
 import { BASE_URL, API_ENDPOINTS } from "configs/baseUrl"
-import ApiStore from "store/ApiStore"
 import { CategoryModel } from "store/models/products"
 import { Meta } from "utils/meta"
 import { ILocalStore } from "utils/useLocalStore"
+import getItems from "store/ApiStore/ApiStore"
 
 
 type PrivateFields = "_meta" | "_list" 
 
 export default class CategoryStore implements ILocalStore {
-    private _apiStore = new ApiStore()
+    private _apiStore = getItems
     _list: CategoryModel[] = []
     private _meta: Meta = Meta.initial
     constructor() {
@@ -34,7 +34,7 @@ export default class CategoryStore implements ILocalStore {
     async getList() {
         this._list = []
         this._meta = Meta.loading
-        const {data, status} = await this._apiStore.get<CategoryModel[]>(`${BASE_URL}${API_ENDPOINTS.CATEGORIES}`)
+        const {data, status} = await this._apiStore<CategoryModel[]>(`${BASE_URL}${API_ENDPOINTS.CATEGORIES}`)
 
         runInAction(() => {
             if (status === 200) {
@@ -50,7 +50,5 @@ export default class CategoryStore implements ILocalStore {
         
     }
 
-    destroy(): void {
-        this._apiStore.destroy()
-    }
+    destroy(): void {}
 }

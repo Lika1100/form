@@ -14,11 +14,12 @@ const Products = ({list}: ProductsProps) => {
     <div className={list.length >= 9 ? styles.scrollableDiv : ""}>
       <div className={styles.cards} id="scrollableDiv">
         {list
-            .map(({ price, images, description, id, title }) => {
+            .map(({ price, images, description, id, title, category }) => {
                 return (
                     <div key={id}>
-                        <Card price={price} images={images} id={id}
-                            description={description} title={title}
+                        <Card price={price!} images={images} id={id}
+                            category={category!}
+                            description={description!} title={title!}
                             key={id} className={styles.cards__item}
                         />
                     </div>

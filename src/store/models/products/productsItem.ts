@@ -4,20 +4,20 @@ import { CategoryApi, CategoryModel, normalizeCategoryItem } from "./categoryIte
 
 export interface ProductApi {
     id: number,
-    title?: string,
-    price?: number,
-    description?: string,
+    title: string,
+    price: number,
+    description: string,
     images: string[],
     category: CategoryApi,
 }
 
 export interface ProductModel {
     id: number,
-    title?: string,
-    price?: number,
-    description?: string,
+    title: string | null,
+    price: number | null,
+    description: string | null,
     images: string[],
-    category?: CategoryModel,
+    category: CategoryModel | null,
 }
 
 export const normalizeProduct = (from: ProductApi): ProductModel => ({

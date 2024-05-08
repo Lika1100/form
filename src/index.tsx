@@ -4,6 +4,7 @@ import "styles/styles.scss";
 import "configs/configureMobX";
 import { BrowserRouter } from 'react-router-dom';
 import App from './App/App';
+import "regenerator-runtime"
 
 
 

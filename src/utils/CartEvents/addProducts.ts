@@ -11,6 +11,8 @@ export function addProducts(product: (ProductModel & Count)): void {
       title: product.title,
       price: product.price,
       images: product.images,
+      category: product.category,
+      description: product.description,
       count: 1
     };
     const ids = events.map((x) => x.id)

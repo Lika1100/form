@@ -36,11 +36,11 @@ export default function Cart() {
     )
   }
 
-  const total = products.map(({price=1, count}) => price*count).reduce((prev=1, acc=1) => prev + acc, 0)
+  const total = products.map(({price=1, count}) => price!*count).reduce((prev=1, acc=1) => prev + acc, 0)
 
   return (
     <div className={styles.cart}>
-        {products.map(({id, title, price = 1, images, count}) => {
+        {products.map(({id, title, price = 1, images, count, category, description}) => {
             return (
                 <div key={id} className={styles.cart__item}>
                     <img src={images[0]} className={styles.cart__img} onError={({currentTarget}) => {
@@ -49,22 +49,22 @@ export default function Cart() {
                     <p className={styles.cart__title}>{title}</p>
                     <div className={styles.cart__counter}>
                         <button className={styles.cart__counterButton} 
-                          onClick={() => onRemove({price, title, count, images, id})}
+                          onClick={() => onRemove({price, title, count, images, id, category, description})}
                           disabled={count === 1 ? true : false}
                         >
                             -
                         </button>
                             <span className={styles.cart__counterNum}>{count}</span>
                         <button
-                          onClick={() => onAdd({price, title, count, images, id})} 
+                          onClick={() => onAdd({price, title, count, images, id, category, description})} 
                           className={styles.cart__counterButton}>
                             +
                         </button>
                     </div>
                     <div className={styles.cart__right}>
-                      <p className={styles.cart__price}>{price*count}$</p>
+                      <p className={styles.cart__price}>{price!*count}$</p>
                       <img src={deleteSvg}
-                        onClick={() => onDelete({price, title, count, images, id})} 
+                        onClick={() => onDelete({price, title, count, images, id, category, description})} 
                         className={styles.cart__removeItem}/>
                     </div>
                 </div>

@@ -13,6 +13,8 @@ import { useLocalStore } from "utils/useLocalStore";
 import img from "../../assets/imgSoon.jpg"
 import styles from "./Product.module.scss";
 import * as React from "react";
+import arrow from "../../assets/arrow.svg"
+import { Meta } from "utils/meta";
 
 
 const Product = () => {
@@ -28,7 +30,7 @@ const Product = () => {
 
     const {meta, item} = productStore
     
-    if (meta === "initial" || meta === "loading") {
+    if (meta === Meta.initial || meta === Meta.loading) {
         return <Loader size="l" className={styles.card__loader} />
     }
 
@@ -36,9 +38,8 @@ const Product = () => {
         <>
             {meta === "success" && (
                 <div className={styles.card} key={item.id}>
-                    <svg onClick={backToProducts} className={styles.card__arrow}>
-                        <use xlinkHref="/sprite.svg#arrow" />
-                    </svg>
+                    <button onClick={backToProducts} className={styles.card__arrow}>
+                    </button>
                     <img className={styles.card__image} 
                       src={item.images[0]} alt="card" 
                       onError={({currentTarget}) => {currentTarget.src = img}}
@@ -62,7 +63,7 @@ const Product = () => {
                     </div>
                 </div>
             )}
-            <RelatedItems categoryId={item.category?.id}/>
+            <RelatedItems categoryId={item.category!.id}/>
         </>
     )
 }

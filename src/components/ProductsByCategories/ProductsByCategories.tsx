@@ -32,11 +32,12 @@ function ProductsByCategories() {
                         <use xlinkHref="/sprite.svg#arrow" />
                 </svg>
                 {meta === "success" && list
-                    .map(({ price, images, description, id, title }) => {
+                    .map(({ price, images, description, id, title, category}) => {
                         return (
                             <div key={id}>
-                                <Card price={price} images={images} id={id}
-                                    description={description} title={title}
+                                <Card price={price!} images={images} id={id}
+                                    description={description!} title={title!}
+                                    category={category!}
                                     key={id} className={styles.categories__item}
                                 />
                             </div>

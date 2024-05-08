@@ -1,16 +1,17 @@
+import { ProductApi } from './../models/products/productsItem';
 import { IReactionDisposer, action, computed, makeObservable, observable, reaction, runInAction } from "mobx";
 import { BASE_URL } from "configs/baseUrl";
-import ApiStore from "store/ApiStore";
 import { QueryParam } from "store/RootStore/QueryParamsStore";
 import rootStore from "store/RootStore/instance";
-import { ProductModel } from "store/models/products";
+import { ProductModel, normalizeProduct } from "store/models/products";
 import { Meta } from "utils/meta";
 import { ILocalStore } from "utils/useLocalStore";
+import getItems from "store/ApiStore/ApiStore";
 
 type PrivateFields = "_meta" | "_list" | "_params" | "_search" | "_select" | "_pageParam"
 
 export default class CatalogStore implements ILocalStore {
-    private _apiStore = new ApiStore()
+    private _apiStore = getItems
     _list: ProductModel[] = []
     private _meta: Meta = Meta.initial
     _params: string = ""
@@ -45,7 +46,7 @@ export default class CatalogStore implements ILocalStore {
         this._params = params
         this._list = []
         this._meta = Meta.loading
-        const {data, status} = await this._apiStore.get<ProductModel[]>(`${BASE_URL}${endPoint}${this._params}`)
+        const {data, status} = await this._apiStore<ProductModel[]>(`${BASE_URL}${endPoint}${this._params}`)
 
         runInAction(() => {
             if (status === 200) {
@@ -84,7 +85,6 @@ export default class CatalogStore implements ILocalStore {
     );
 
     destroy(): void {
-        this._apiStore.destroy()
         this._qpReactionTitle()
         this._qpReactionCategoryId()
         this._qpReactionPage()
