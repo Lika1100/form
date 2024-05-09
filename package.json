@@ -26,6 +26,7 @@
     "fast-async": "^6.3.8",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.0",
+    "media-query-plugin": "^1.5.0",
     "mini-css-extract-plugin": "^2.9.0",
     "postcss-loader": "^8.1.1",
     "react": "^18.3.1",
@@ -52,6 +53,8 @@
     "react-dom": "^18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.8.2",
+    "react-spring": "^9.7.3",
+    "react-spring-carousel": "^2.0.19",
     "react-toastify": "^9.1.1",
     "regenerator-runtime": "^0.14.1"
   }

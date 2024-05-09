@@ -46,7 +46,7 @@ function ProductsPage() {
     }
 
     if (meta === Meta.initial || meta === Meta.loading) {
-      return <Loader size="l" className={styles.cards__loader} />
+      return <Loader size="l" className={styles.cardsLoader} />
     }
 
   return (

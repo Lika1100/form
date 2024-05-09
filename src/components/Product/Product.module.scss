@@ -1,8 +1,7 @@
 @import "styles/styles";
 
 .card {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
     position: relative;
     padding-top: 40px;
 
@@ -11,89 +10,15 @@
         width: 30px;
         height: 30px;
         top: 5px;
+        bottom: 5px;
+        left: 0;
         transition: all 200ms ease-in-out;
         cursor: pointer;
+        background-color: transparent;
+        background-image: url("../../assets/arrow-prev.svg");
 
         &:hover {
             transform: scale(1.1);
         }
-    }
-
-    &__image {
-        max-width: 600px;
-        object-fit: contain;
-    }
-
-    &__titleContainer {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    &__footerButtons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 48px;
-    }
-
-    &__button {
-        padding: 17px 20px;
-        color: $text-primary;
-        background-color: $button-primary-text;
-        border: 1px solid $text-primary;
-        opacity: 1;
-        transform: all 200ms liner;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 18px;
-
-        &:hover {
-            background-color: $button-primary-text;
-            opacity: 0.7;
-            border-color: rgb(0, 0, 0, 0.7);
-        }
-    }
-
-    &__loader {
-        position: absolute;
-        left: 50%;
-        top: 30%;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .card {
-        &__image {
-            width: 400px;
-        }
-
-        &__titleContainer {
-            gap: 10px;
-        }
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .card {
-        grid-template-columns: 1fr;
-        justify-items: center;
-
-        &__arrow {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        &__image {
-            width: 100%;
-            z-index: 1;
-        }
-
-        &__footerButtons {
-            gap: 24px;
-            justify-content: flex-end;
-        }
-
     }
 }

@@ -1,3 +1,5 @@
+@import "styles/styles";
+
 .related {
     display: flex;
     flex-direction: column;
@@ -11,6 +13,18 @@
     }
 
     &__card {
-        width: 360px;
+        max-width: 360px;
+    }
+
+    @include for-tablet {
+        &__cards {
+            grid-template-columns: repeat(2, 50%);
+        }
+    }
+    @include for-phone {
+        align-items: center;
+        &__cards {
+            grid-template-columns: repeat(1, 100%);
+        }
     }
 }

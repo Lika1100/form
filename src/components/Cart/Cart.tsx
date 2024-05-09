@@ -29,9 +29,9 @@ export default function Cart() {
 
   if (products.length === 0) {
     return (
-        <div className={styles.cart__empty}>
+        <div className={styles.cartEmpty}>
         <p>Корзина пуста</p>
-        <img src={emptyCart} className={styles.cart__emptyImg}/>
+        <img src={emptyCart} className={styles.cartEmptyImg}/>
         </div>
     )
   }
@@ -42,35 +42,35 @@ export default function Cart() {
     <div className={styles.cart}>
         {products.map(({id, title, price = 1, images, count, category, description}) => {
             return (
-                <div key={id} className={styles.cart__item}>
-                    <img src={images[0]} className={styles.cart__img} onError={({currentTarget}) => {
+                <div key={id} className={styles.cartItem}>
+                    <img src={images[0]} className={styles.cartImg} onError={({currentTarget}) => {
                         currentTarget.src = img
                     }}/>
-                    <p className={styles.cart__title}>{title}</p>
-                    <div className={styles.cart__counter}>
-                        <button className={styles.cart__counterButton} 
+                    <p className={styles.cartTitle}>{title}</p>
+                    <div className={styles.cartCounter}>
+                        <button className={styles.cartCounterButton} 
                           onClick={() => onRemove({price, title, count, images, id, category, description})}
                           disabled={count === 1 ? true : false}
                         >
                             -
                         </button>
-                            <span className={styles.cart__counterNum}>{count}</span>
+                            <span className={styles.cartCounterNum}>{count}</span>
                         <button
                           onClick={() => onAdd({price, title, count, images, id, category, description})} 
-                          className={styles.cart__counterButton}>
+                          className={styles.cartCounterButton}>
                             +
                         </button>
                     </div>
-                    <div className={styles.cart__right}>
-                      <p className={styles.cart__price}>{price!*count}$</p>
+                    <div className={styles.cartRight}>
+                      <p className={styles.cartPrice}>{price!*count}$</p>
                       <img src={deleteSvg}
                         onClick={() => onDelete({price, title, count, images, id, category, description})} 
-                        className={styles.cart__removeItem}/>
+                        className={styles.cartRemoveItem}/>
                     </div>
                 </div>
             )
         })}
-        <div className={styles.cart__footer}>
+        <div className={styles.cartFooter}>
             <p>Total sum {total}$</p>
         </div>
     </div>

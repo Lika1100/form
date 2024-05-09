@@ -18,6 +18,7 @@ function RelatedItems({categoryId}: RelatedType) {
   useEffect(() => {
     relatedStore.getList(API_ENDPOINTS.PRODUCTS_BY_CATEGORY, `${categoryId}&limit=3&offset=2`)
   }, [categoryId, relatedStore])
+  
   const {list, meta} = relatedStore
   
   return (
@@ -25,11 +26,11 @@ function RelatedItems({categoryId}: RelatedType) {
         <Text view="title">
             RelatedItems
         </Text>
-        <div className={styles.related__cards}>
+        <div className={styles.relatedCards}>
             {meta === Meta.success && (
             list.map(({id, images, title, price, description, category}) => {
                     return (
-                        <div key={id} className={styles.related__card}>
+                        <div key={id} className={styles.relatedCard}>
                             <Card 
                                 id={id} 
                                 images={images} 

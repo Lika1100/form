@@ -24,15 +24,6 @@ export default class ItemStore implements ILocalStore {
         }
     }
     private _meta: Meta = Meta.initial
-    constructor() {
-        makeObservable<ItemStore, PrivateFields>(this, {
-            _item: observable,
-            _meta: observable,
-            item: computed,
-            meta: computed,
-            getItem: action,
-        })
-    }
 
     get item(): ProductModel {
         return this._item
@@ -57,6 +48,18 @@ export default class ItemStore implements ILocalStore {
             this._meta = Meta.error
         })
     }
+
+    constructor() {
+        makeObservable<ItemStore, PrivateFields>(this, {
+            _item: observable,
+            _meta: observable,
+            item: computed,
+            meta: computed,
+            getItem: action,
+        })
+    }
+
+   
 
     destroy(): void {}
 }

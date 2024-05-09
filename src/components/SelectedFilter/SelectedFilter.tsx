@@ -65,29 +65,29 @@ function SelectedFilter() {
   const placeholder = searchParams.get("categoryName")
   
   return (
-    <div className={styles.dropdown_menu} ref={wrapperRef}>
-      <form  className={styles.dropdown_menu__form}>
+    <div className={styles.dropdownMenu} ref={wrapperRef}>
+      <form  className={styles.dropdownMenuForm}>
         <input
           placeholder={placeholder === null ? "Filter" : placeholder}
           onFocus={() => setIsOpen(true)}
           value={value}
           onChange={onChange}
-          className={styles.dropdown_menu__inputText}
+          className={styles.dropdownMenuInputText}
         />
         <img src={arrow} alt="" 
-          className={cn(styles.dropdown_menu__arrow, {
-            [styles.dropdown_menu__arrow_open]: isOpen,
+          className={cn(styles.dropdownMenuArrow, {
+            [styles.dropdownMenuArrowOpen]: isOpen,
           })}
         />
       </form>
-        {isOpen && meta === Meta.success && <ul className={styles.dropdown_menu__list}>
+        {isOpen && meta === Meta.success && <ul className={styles.dropdownMenuList}>
           {listWithAll
             .filter(({name}) => name.toLowerCase().includes(value.toLowerCase()))
             .map(({id, name}) => {
             return (
               <li 
-                className={cn(styles.dropdown_menu__listItem, {
-                  [styles.dropdown_menu__listItem_active]: isActiveKey(id)
+                className={cn(styles.dropdownMenuListItem, {
+                  [styles.dropdownMenuListItemActive]: isActiveKey(id)
                 })}
                 onClick={() => onClick(id, name)} 
                 key={id}

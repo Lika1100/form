@@ -1,19 +1,5 @@
 @import "styles/styles";
 
-
-.scrollableDiv {
-    // height  - какая нужна высота?
-    height: 1500px;
-    overflow: auto;
-    display: flex;
-    flex-direction: column-reverse;
-    scroll-behavior: smooth;
-
-    &::-webkit-scrollbar {
-        width: 12px;
-    }
-}
-
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 33%);
@@ -39,16 +25,12 @@
         left: 50%;
         top: 30%;
     }
-}
 
-@media screen and (max-width: 768px) {
-    .cards {
+    @include for-tablet {
         grid-template-columns: repeat(2, 50%);
     }
-}
 
-@media screen and (max-width: 520px) {
-    .cards {
+    @include for-phone {
         grid-template-columns: 100%;
     }
 }

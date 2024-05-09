@@ -2,10 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
+const MediaQueryPlugin = require("media-query-plugin")
 const buildPath = path.resolve(__dirname, 'dist');
 const srcPath = path.resolve(__dirname, 'src');
 const isProd = process.env.NODE_ENV === 'production'; 
-const nodeModulesPath = path.resolve(__dirname, "node_modules");
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getSettingsForStyles = (withModules = false) => {
@@ -19,7 +19,7 @@ const getSettingsForStyles = (withModules = false) => {
             modules: {
               localIdentName: !isProd ? '[path][name]__[local]' : '[hash:base64]',
             },
-            //esModule: false
+            esModule: false,
           },
         },
     {
@@ -69,19 +69,19 @@ module.exports = {
         ]
     },
     devServer: {
-        host: '127.0.0.1', // хост нашего сервера
-        port: 9000, // порт, по которому к нему можно обращаться
+        host: 'localhost', //если писать 127.0.0.1, то не грузятся картинки
+        port: 9000,
         hot: true,
         historyApiFallback: true
     },
     plugins: [
         new HtmlWebpackPlugin({
-           template: path.resolve(srcPath, 'index.html'), // путь до нашего шаблона
+           template: path.resolve(srcPath, 'index.html'),
          }),
          isProd && new MiniCssExtractPlugin({
-            // Для того чтобы файл со стилями не кэшировался в браузере добавим filename
             filename: '[name]-[hash].css',
           }),
+          isProd && new MediaQueryPlugin(),
          !isProd && new ReactRefreshWebpackPlugin(),
          new TsCheckerPlugin ()
     ],

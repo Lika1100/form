@@ -30,12 +30,13 @@ const Search = () => {
         placeholder="Search property"
         value={value === null ? "" : value}
         onChange={handleChange}
-        className={styles.form__inputText}
+        className={styles.formInputText}
       />
       <input
         type="submit"
         name="submit"
-        className={styles.form__inputSubmit}
+        value="Find now"
+        className={styles.formInputSubmit}
       />
     </form>
   );

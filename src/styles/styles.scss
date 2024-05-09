@@ -1,6 +1,18 @@
-//@import './Roboto/fonts.css';
+//@import "styles/Roboto/fonts.css";
+@mixin for-laptop {
+    @media screen and (max-width: 1024px) { @content; }
+}
+@mixin for-tablet {
+    @media screen and (max-width: 768px) { @content; }
+}
+@mixin for-phone {
+    @media screen and (max-width: 520px) { @content; }
+}
 
 
+$text-primary: #000;
+$text-secondary: #afadb5;
+$text-accent: #518581;
 $loader-bg: #518581;
 $button-primary-bg: #518581;
 $button-primary-text: #fff;
@@ -10,9 +22,6 @@ $button-primary-bg-disabled: #d9d9d9;
 $button-primary-text-disabled: #fff;
 $button-primary-bg-active: #487773;
 $button-primary-text-active: #fff;
-$text-primary: #000;
-$text-secondary: #afadb5;
-$text-accent: #518581;
 $input-text: #000;
 $input-bg: #fff;
 $input-placeholder: #afadb5;
@@ -39,6 +48,12 @@ $brand: #518581;
 $brand-active: #487773;
 $brand-hover: #86aaa7;
 $main-bg: rgb(250, 250, 250);
+
+:root {
+    --text-primary: #000;
+    --text-secondary: #afadb5;
+    --text-accent: #518581;
+}
 
 html,
 body {

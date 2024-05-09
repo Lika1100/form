@@ -1,6 +1,7 @@
 import cn from "classnames";
 import * as React from 'react';
 import styles from "./Text.module.scss";
+import "styles/styles.scss"
 
 
 export type TextProps = {
@@ -17,10 +18,10 @@ const Text: React.FC<TextProps> = ({ view, tag = "p", weight, children, color = 
     const Tag = tag
     return (
         <>
-            <Tag className={view && cn(styles.text, styles[`text_${view}`], className)}
+            <Tag className={view && cn(styles.text, styles[`${view}`], className)}
                 style={{
                     fontWeight: weight,
-                    color: `$text-${color}`,
+                    color: `var(--text-${color})`,
                     WebkitLineClamp: maxLines,
                 }}>
                 {children}

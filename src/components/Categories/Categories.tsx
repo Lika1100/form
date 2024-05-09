@@ -21,9 +21,9 @@ function Categories() {
             {meta === "success" && list
                 .map(({ image, id, name }) => {
                     return (
-                        <div key={id} className={styles.categories__card} onClick={() => goToCategories(String(id))}>
+                        <div key={id} className={styles.categoriesCard} onClick={() => goToCategories(String(id))}>
                             <img src={image} alt='card'
-                              className={styles.categories__img} 
+                              className={styles.categoriesImg} 
                               onError={({currentTarget}) => {currentTarget.src = img}}
                             />
                             <Text 

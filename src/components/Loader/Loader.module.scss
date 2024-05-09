@@ -1,28 +1,20 @@
-.loader {
-    &__size {
-        &_s {
-            width: 24px;
-            height: 24px;
-        }
-
-        &_m {
-            width: 48px;
-            height: 48px;
-        }
-
-        &_l {
-            width: 60px;
-            height: 60px;
-        }
-
-        &_s,
-        &_m,
-        &_l {
-            animation: rotation 1s linear infinite;
-        }
-    }
+.s {
+    width: 24px;
+    height: 24px;
 }
 
+.m {
+    width: 48px;
+    height: 48px;
+}
+
+.l {
+    width: 60px;
+    height: 60px;
+}
+.s, .m, .l {
+    animation: rotation 1s linear infinite;
+}
 @keyframes rotation {
     0% {
         transform: rotate(0deg);

@@ -23,14 +23,12 @@ function ProductsByCategories() {
     const {list, meta} = productsCategories
 
     if (meta === "initial" || meta === "loading") {
-        return <Loader size="l" className={styles.categories__loader} />
+        return <Loader size="l" className={styles.categoriesLoader} />
     }
     
     return (
             <div className={styles.categories}>
-                <svg onClick={backToProducts} className={styles.categories__arrow}>
-                        <use xlinkHref="/sprite.svg#arrow" />
-                </svg>
+                <button onClick={backToProducts} className={styles.categoriesArrow}/>
                 {meta === "success" && list
                     .map(({ price, images, description, id, title, category}) => {
                         return (
@@ -38,7 +36,7 @@ function ProductsByCategories() {
                                 <Card price={price!} images={images} id={id}
                                     description={description!} title={title!}
                                     category={category!}
-                                    key={id} className={styles.categories__item}
+                                    key={id}
                                 />
                             </div>
                         )

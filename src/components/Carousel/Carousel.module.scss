@@ -1,0 +1,36 @@
+@import "styles/styles";
+
+.carousel {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &__button {
+        width: 30px;
+        height: 30px;
+        bottom: 50%;
+        position: absolute;
+        z-index: 99;
+        cursor: pointer;
+        background-color: $checkbox-bg-disabled;
+        border-radius: 50%;
+        transform: scale(1);
+        transition: transform 200ms ease-out;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__button_prev {
+        margin-left: 0;
+        background-image: url('../../assets/arrow-prev.svg');
+        background-repeat: no-repeat;
+    }
+
+    &__button_next {
+        right: 0;
+        background-image: url('../../assets/arrow-next.svg');
+        background-repeat: no-repeat;
+    }
+}

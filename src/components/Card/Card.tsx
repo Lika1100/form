@@ -1,5 +1,4 @@
 import cn from "classnames";
-import { observer } from "mobx-react-lite";
 import * as React from "react";
 import Button from "components/Button";
 import Text from "components/Text";
@@ -8,6 +7,8 @@ import { addProducts } from "utils/CartEvents/addProducts";
 import img from "../../assets/imgSoon.jpg"
 import styles from "./Card.module.scss";
 import { CategoryModel } from "store/models/products";
+import isImgUrl from "configs/isImgUrl";
+import Carousel from "components/Carousel";
 
 export type CardProps = {
     id: number;
@@ -16,35 +17,44 @@ export type CardProps = {
     images: string[];
     price: number;
     className?: string,
-    category: CategoryModel
+    category: CategoryModel,
+    view?: "horizontal" | "vertical"
 };
 
-const Card: React.FC<CardProps> = ({ id, title, description, images, price, className, category }) => {
+const Card: React.FC<CardProps> = ({ id, title, description, images, price, className, category, view = "vertical" }) => {
     const {goToProduct} = useNavigatePages()
+    const imgUrl = images[0]
+    const isUrl = isImgUrl(imgUrl)
     
     return (
-        <div className={cn(className, styles.card)} key={id}>
-            <img className={styles.card__image} 
+        <div className={cn(className, styles.card, styles[`${view}`])} key={id}>
+            {view === "vertical" && <img className={styles.cardImage} 
               onClick={() => goToProduct(id)}
-              src={images[0]} 
-              alt="card" 
-              onError={({currentTarget}) => currentTarget.src = img}
-            />
-            <div className={styles.card__titleContainer}>
-                <Text view='p-20' maxLines={2} weight='bold' color='primary'>{title}</Text>
+              src={isUrl ? imgUrl : img} 
+              alt="card"
+            />}
+            {view === "horizontal" && (
+                <Carousel images={images} className={styles.cardImage}/>
+            )}
+            <div className={styles.cardTitleContainer}>
+                <Text view={view === "vertical" ? 'p-20' : "title"} maxLines={2} weight='bold' color='primary'>{title}</Text>
                 <Text view='p-16' maxLines={3} color="secondary">{description}</Text>
-                <div className={styles.card__footer}>
-                    <Text view='p-18' weight='bold'>{`$${price}`}</Text>
-                    <Button 
-                      onClick={() => addProducts({id, price, title, images, count: 1, description, category})}
-                      disabled={false} 
-                      className={""}>
-                        Add to Cart
-                    </Button>
+                <div className={styles.cardFooter}>
+                    <Text view={view === "vertical" ?'p-18' : "title"} weight='bold' className={styles.cardPrice}>{`$${price}`}</Text>
+                    <div className={styles.cardButtons}>
+                        {view === "horizontal" && (
+                            <Button view="white">Buy Now</Button>
+                        )}
+                        <Button 
+                            onClick={() => addProducts({id, price, title, images, count: 1, description, category})}
+                        >
+                            Add to Cart
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
 
-export default observer(Card)
+export default Card
