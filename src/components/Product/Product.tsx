@@ -10,6 +10,7 @@ import ItemStore from "store/ItemStore";
 import { Meta } from "utils/meta";
 import { useLocalStore } from "utils/useLocalStore";
 import styles from "./Product.module.scss";
+import ArrowLeft from "components/Icons/ArrowLeft";
 
 
 const Product = () => {
@@ -34,8 +35,7 @@ const Product = () => {
         <>
             {meta === "success" && (
                 <div className={styles.card}>
-                    <button onClick={backToProducts} className={styles.cardArrow}>
-                    </button>
+                    <ArrowLeft onClick={backToProducts} className={styles.cardArrow} />
                     <div className={styles.cardItem}>
                         <Card
                             view="horizontal" id={item.id}
