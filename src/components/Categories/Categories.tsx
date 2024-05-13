@@ -23,8 +23,8 @@ function Categories() {
                     return (
                         <div key={id} className={styles.categoriesCard} onClick={() => goToCategories(String(id))}>
                             <img src={image} alt='card'
-                              className={styles.categoriesImg} 
                               onError={({currentTarget}) => {currentTarget.src = img}}
+                              className={styles.categoriesImg}
                             />
                             <Text 
                               view='p-20' maxLines={2} 

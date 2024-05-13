@@ -18,6 +18,7 @@ const Search = () => {
     }
     searchParams.delete("page")
     setSearchParams(searchParams)
+    rootStore.fullList.getEmptyList()
     rootStore.query.setSearch(searchParams.toString())
   }
   return (

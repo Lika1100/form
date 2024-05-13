@@ -1,0 +1,47 @@
+@import "styles/styles";
+
+.user {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-template-rows: repeat(2, auto);
+    gap: 8px;
+    padding-top: 48px;
+
+    &__text {
+        position: absolute;
+        left: 50%;
+    }
+
+    &__account {
+        @include boxShadow;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        align-items: center;
+        padding: 12px;
+        border-radius: 8px;
+        background-color: $button-primary-bg-hover;
+        color: $main-bg;
+        transition: all 200ms ease-out;
+        padding: 24px 12px;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+
+        &__delivery {
+            background-color: $main-bg;
+            color: #000;
+        }
+
+        &__receipts {
+            background-color: $button-primary-bg-active;
+            color: $main-bg;
+        }
+    }
+
+    &__avatar {
+        display: block;
+        width: 100px;
+        border-radius: 50%;
+    }
+}

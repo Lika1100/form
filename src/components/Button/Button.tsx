@@ -9,7 +9,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children: React.ReactNode
     className?: string
     disabled?: boolean,
-    onClick?: () => void,
+    onClick?: VoidFunction,
     view?: "green" | "white"
 };
 

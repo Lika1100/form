@@ -1,9 +1,10 @@
 import { action, computed, makeObservable, observable, runInAction } from "mobx";
-import { BASE_URL } from "configs/baseUrl";
+import { API_ENDPOINTS, BASE_URL } from "configs/baseUrl";
+import getItems from "store/ApiStore/ApiStore";
 import { ProductModel } from "store/models/products";
 import { Meta } from "utils/meta";
 import { ILocalStore } from "utils/useLocalStore";
-import getItems from "store/ApiStore/ApiStore";
+
 
 type PrivateFields = "_item" | "_meta"
 
@@ -33,10 +34,10 @@ export default class ItemStore implements ILocalStore {
         return this._meta
     }
 
-    async getItem(endpoint: string, id: string) {
+    async getItem(id: string) {
         this._meta = Meta.loading
 
-        const {data, status} = await this._apiStore<ProductModel>(`${BASE_URL}${endpoint}${id}`)
+        const { data, status } = await this._apiStore<ProductModel>(`${BASE_URL}${API_ENDPOINTS.PRODUCTS}${id}`)
 
         runInAction(() => {
             if (status === 200) {
@@ -59,7 +60,7 @@ export default class ItemStore implements ILocalStore {
         })
     }
 
-   
 
-    destroy(): void {}
+
+    destroy(): void { }
 }

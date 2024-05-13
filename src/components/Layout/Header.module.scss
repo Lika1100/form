@@ -1,9 +1,7 @@
 @import "styles/styles";
 
 .header {
-    position: fixed;
-    max-width: 1240px;
-    width: 100%;
+    position: sticky;
     top: 0;
     display: flex;
     justify-content: space-between;
@@ -66,6 +64,26 @@
         gap: 24px;
     }
 
+    &__cart {
+        position: relative;
+    }
+
+    &__iconNum {
+        display: flex;
+        font-size: 11px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: rgba(204, 51, 0, 0.8);
+        position: absolute;
+        bottom: 2px;
+        right: 0px;
+        align-items: center;
+        justify-content: center;
+        color: rgba(240, 240, 240, 1);
+        animation: cart 200ms linear;
+    }
+
     &__iconCart,
     &__iconUser {
         width: 30px;
@@ -78,10 +96,8 @@
             opacity: 0.7;
         }
     }
-}
 
-@media screen and (max-width: 768px) {
-    .header {
+    @include for-tablet {
         z-index: 999;
 
         &__burger {
@@ -111,8 +127,6 @@
             width: 30px;
             height: 30px;
             cursor: pointer;
-            background-color: transparent;
-            background-image: url('../../assets/burger.svg');
         }
 
         &__closeImg {
@@ -141,5 +155,27 @@
                 color: #afadb5;
             }
         }
+    }
+}
+
+@keyframes cart {
+    0% {
+        transform: scale(0);
+    }
+
+    25% {
+        transform: scale(0.25);
+    }
+
+    50% {
+        transform: scale(0.5);
+    }
+
+    75% {
+        transform: scale(0.75);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }

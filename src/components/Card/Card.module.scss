@@ -2,10 +2,16 @@
 
 
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: all 200ms linear;
+    min-height: 100%;
+
     &:hover {
-        box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.25);
+        @include boxShadow
     }
+
     &__image {
         width: 100%;
         object-fit: contain;
@@ -34,6 +40,7 @@
 .horizontal {
     display: flex;
     width: 100%;
+    flex-direction: row;
 
     .card {
         &__footer {
@@ -41,16 +48,22 @@
             align-items: flex-start;
             gap: 24px;
         }
+
         &__buttons {
             display: flex;
             justify-content: space-between;
             gap: 48px;
+        }
+
+        &__image {
+            margin: 0 auto;
         }
     }
 
 
     @include for-tablet {
         flex-direction: column;
+
         .card {
             &__image {
                 max-width: 600px;

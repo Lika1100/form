@@ -1,14 +1,13 @@
-import { ProductApi } from './../models/products/productsItem';
 import { IReactionDisposer, action, computed, makeObservable, observable, reaction, runInAction } from "mobx";
-import { BASE_URL } from "configs/baseUrl";
+import { API_ENDPOINTS, BASE_URL } from "configs/baseUrl";
+import getItems from "store/ApiStore/ApiStore";
 import { QueryParam } from "store/RootStore/QueryParamsStore";
 import rootStore from "store/RootStore/instance";
-import { ProductModel, normalizeProduct } from "store/models/products";
+import { ProductModel } from "store/models/products";
 import { Meta } from "utils/meta";
 import { ILocalStore } from "utils/useLocalStore";
-import getItems from "store/ApiStore/ApiStore";
 
-type PrivateFields = "_meta" | "_list" | "_params" | "_search" | "_select" | "_pageParam"
+type PrivateFields = "_meta" | "_list" | "_params" | "_search" | "_select" | "_pageParam" | "_fullList" | "_all"
 
 export default class CatalogStore implements ILocalStore {
     private _apiStore = getItems
@@ -18,20 +17,27 @@ export default class CatalogStore implements ILocalStore {
     private _search: QueryParam = rootStore.query.getParam("title")
     private _select: QueryParam = rootStore.query.getParam("categoryId")
     private _pageParam: QueryParam = rootStore.query.getParam("page")
+    private _fullList: ProductModel[] = rootStore.fullList.fullList
+    _all: ProductModel[] = []
+
 
     constructor() {
         makeObservable<CatalogStore, PrivateFields>(this, {
-            _list: observable,
+            _list: observable.ref,
             _meta: observable,
             _params: observable,
             _search: observable,
             _select: observable,
             _pageParam: observable,
+            _fullList: observable,
+            _all: observable,
+            all: computed,
             list: computed,
             meta: computed,
-            getList: action,
+            getList: action
         })
     }
+
 
     get list() {
         return this._list
@@ -40,47 +46,59 @@ export default class CatalogStore implements ILocalStore {
     get meta(): Meta {
         return this._meta
     }
-    
 
-    async getList(endPoint: string, params: string) {
+    get all(): ProductModel[] {
+        return this._all
+    }
+
+
+    async getList(endpoint: string, params: string) {
         this._params = params
         this._list = []
         this._meta = Meta.loading
-        const {data, status} = await this._apiStore<ProductModel[]>(`${BASE_URL}${endPoint}${this._params}`)
-
+        const { data, status } = await this._apiStore<ProductModel[]>(`${BASE_URL}${endpoint}${this._params}`)
+        console.log(`${BASE_URL}${this._params}`)
         runInAction(() => {
             if (status === 200) {
-                this._meta = Meta.success
                 this._list = data
-                return 
+                this._all = rootStore.fullList.getUniqList(this._list)
+                this._meta = Meta.success
+                return data
             }
 
             this._meta = Meta.error
         })
 
         return data
-        
+
     }
 
-    
+
     private readonly _qpReactionTitle: IReactionDisposer = reaction(
         () => rootStore.query.getParam('title'),
         (search) => {
-          this._search = search
+            this._search = search
         }
     );
 
     private readonly _qpReactionCategoryId: IReactionDisposer = reaction(
         () => rootStore.query.getParam('categoryId'),
         (select) => {
-          this._select = select
+            this._select = select
         }
     );
 
     private readonly _qpReactionPage: IReactionDisposer = reaction(
         () => rootStore.query.getParam('page'),
         (pageParam) => {
-          this._pageParam = pageParam
+            this._pageParam = pageParam
+        }
+    );
+
+    private readonly _listReactionPage: IReactionDisposer = reaction(
+        () => rootStore.fullList.fullList,
+        (fullList) => {
+            this._fullList = fullList
         }
     );
 
@@ -88,5 +106,6 @@ export default class CatalogStore implements ILocalStore {
         this._qpReactionTitle()
         this._qpReactionCategoryId()
         this._qpReactionPage()
+        this._listReactionPage()
     }
 }

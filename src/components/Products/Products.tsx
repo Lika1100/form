@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
+import * as React from "react";
 import Card from "components/Card";
 import { ProductModel } from "store/models/products";
 import styles from "./Products.module.scss"
-import * as React from "react";
 
 
 type ProductsProps = {

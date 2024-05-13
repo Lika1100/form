@@ -1,7 +1,7 @@
+import cn from "classnames";
 import React from 'react';
 import { useSpringCarousel } from 'react-spring-carousel';
 import styles from "./Carousel.module.scss";
-import cn from "classnames";
 
 type CarouselProps = {
     images: string[],

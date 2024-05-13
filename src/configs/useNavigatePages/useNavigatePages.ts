@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 function useNavigatePages() {
-    const {page = "1"} = useParams()
+    const { page = "1" } = useParams()
     const navigate = useNavigate();
 
     function back() {
@@ -20,13 +20,23 @@ function useNavigatePages() {
     function goToCategories(id: string) {
         navigate(`/categoryId/${id}`)
     }
-    
+
+    function goToPayment() {
+        navigate('/payment')
+    }
+
+    function goToUserPage(id: number) {
+        navigate(`/user/${id}`)
+    }
+
     return {
         back,
         next,
         goToProduct,
         backToProducts,
-        goToCategories
+        goToCategories,
+        goToPayment,
+        goToUserPage
     }
 }
 

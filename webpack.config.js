@@ -65,7 +65,11 @@ module.exports = {
  	    {
                 test: /\.[tj]sx?$/,
                 use: 'babel-loader'
-            }
+            },
+            {
+              test: /\.(woff|woff2|eot|ttf|otf)$/i,
+              type: 'asset/resource',
+            },
         ]
     },
     devServer: {
@@ -96,5 +100,10 @@ module.exports = {
                     pages: path.join(srcPath, 'pages'),
                     App: path.join(srcPath, 'App'),
                 }
+            },
+            performance: {
+              hints: false,
+              maxEntrypointSize: 512 * 1024,
+              maxAssetSize: 512 * 1024,
             },
 }

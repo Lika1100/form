@@ -6,7 +6,6 @@
     flex-direction: column;
     gap: 24px;
 
-
     &__item {
         display: flex;
         gap: 24px;
@@ -24,11 +23,6 @@
 
     &__title {
         max-width: 200px;
-        font-size: 24px;
-    }
-
-    &__price {
-        font-weight: bold;
     }
 
     &__removeItem {
@@ -72,17 +66,12 @@
         }
     }
 
-    &__counterNum {
-        font-family: "Roboto";
-        font-size: 18px;
-    }
-
     &__empty {
-        position: absolute;
-        width: 200px;
-        top: 20%;
-        left: 50%;
-        font-size: 24px;
+        display: flex;
+        flex-direction: column;
+        padding-top: 24px;
+        width: 100%;
+        align-items: center;
     }
 
     &__emptyImg {
@@ -102,29 +91,21 @@
         background-color: $text-secondary;
         color: $button-primary-text-hover;
         justify-content: flex-end;
-        font-size: 24px;
-        font-weight: bold;
         padding: 18px;
         margin-bottom: 24px;
     }
-}
 
-@media screen and (max-width: 768px) {
-    .cart {
-
+    @include for-tablet {
         &__img {
             max-width: 200px;
         }
 
         &__title {
             max-width: 150px;
-            font-size: 20px;
         }
     }
-}
 
-@media screen and (max-width: 560px) {
-    .cart {
+    @include for-phone {
         &__item {
             gap: 8px;
         }
@@ -135,13 +116,10 @@
 
         &__title {
             max-width: 100px;
-            font-size: 20px;
         }
     }
-}
 
-@media screen and (max-width: 440px) {
-    .cart {
+    @include for-cart {
         &__item {
             display: grid;
             grid-template-columns: repeat(4, 25%);
@@ -151,21 +129,9 @@
             max-width: 100%;
         }
 
-        &__title {
-            font-size: 16px;
-        }
-
-        &__counterNum {
-            font-size: 14px;
-        }
-
         &__removeItem {
             width: 20px;
             height: 20px;
-        }
-
-        &__price {
-            font-size: 14px;
         }
 
         &__right {
@@ -173,3 +139,4 @@
         }
     }
 }
+

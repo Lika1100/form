@@ -1,6 +1,6 @@
 import cn from "classnames";
-import styles from "./DotsLoader.module.scss";
 import * as React from "react";
+import styles from "./DotsLoader.module.scss";
 
 export default function DotsLoader() {
   return (

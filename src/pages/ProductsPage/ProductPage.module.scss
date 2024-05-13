@@ -1,0 +1,39 @@
+@import "styles/styles";
+
+.scrollToTopBtn {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 15px;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all .5s ease;
+    cursor: pointer;
+
+    &__icon {
+        fill: black;
+
+    }
+
+    @include for-tablet {
+        top: 40px;
+        left: 50%;
+    }
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 200ms ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}

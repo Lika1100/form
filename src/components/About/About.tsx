@@ -1,6 +1,6 @@
+import * as React from 'react';
 import Text from 'components/Text';
 import styles from "./About.module.scss"
-import * as React from 'react';
 
 export default function About() {
   return (

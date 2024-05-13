@@ -9,19 +9,7 @@
     padding-top: 30px;
 
     &__arrow {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        transition: all 200ms ease-in-out;
-        width: 24px;
-        height: 30px;
-        background-color: transparent;
-        background-image: url("../../assets/arrow-prev.svg");
-
-        &:hover {
-            position: absolute;
-            transform: scale(1.1);
-        }
+       @include arrowBack
     }
 
     &__loader {
@@ -30,6 +18,7 @@
         left: 50%;
         top: 30%;
     }
+
     @include for-tablet {
         grid-template-columns: repeat(2, 50%);
     }
