@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import * as React from 'react';
@@ -16,7 +17,6 @@ import rootStore from 'store/RootStore/instance';
 import { Meta } from 'utils/meta';
 import { useLocalStore } from 'utils/useLocalStore';
 import s from "./ProductPage.module.scss";
-import cn from "classnames";
 
 function ProductsPage() {
   const productsStore = useLocalStore(() => new CatalogStore());
@@ -64,7 +64,7 @@ function ProductsPage() {
   function onClick() {
     window.scrollTo(0, 0)
   }
-  console.log(scrollButton, "scroll")
+
   return (
     <div>
       <button className={cn(s.scrollToTopBtn, s[scrollButton])} onClick={onClick}>

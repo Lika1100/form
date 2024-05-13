@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Account from 'components/Account';
+import UserPage from 'components/Account/UserPage';
 import Cart from 'components/Cart';
 import Categories from 'components/Categories';
 import Container from 'components/Container';
@@ -10,7 +11,6 @@ import Product from 'components/Product';
 import ProductsByCategories from 'components/ProductsByCategories';
 import ProductsPage from 'pages/ProductsPage';
 import { useQueryParamsStoreInit } from 'store/RootStore/hooks/useQueryParams';
-import UserPage from 'components/Account/UserPage';
 
 
 

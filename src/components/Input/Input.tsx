@@ -1,5 +1,5 @@
-import React from "react";
 import cn from "classnames";
+import React from "react";
 import styles from "./Input.module.scss"
 
 export type InputProps = Omit<
@@ -23,6 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <div>
                 <input
                     {...props}
+                    name="input"
                     type="text"
                     value={value}
                     disabled={disabled}

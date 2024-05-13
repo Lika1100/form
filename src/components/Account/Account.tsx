@@ -1,18 +1,18 @@
 import axios from 'axios'
+import { action, toJS } from 'mobx';
+import { observer } from 'mobx-react-lite';
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import styles from "./Account.module.scss"
+import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
-import Text from 'components/Text';
-import rootStore from 'store/RootStore/instance';
-import { observer } from 'mobx-react-lite';
-import { Meta } from 'utils/meta';
-import { useNavigate } from 'react-router-dom';
-import useNavigatePages from 'configs/useNavigatePages';
 import Loader from 'components/Loader';
-import { action, toJS } from 'mobx';
+import Text from 'components/Text';
+import useNavigatePages from 'configs/useNavigatePages';
 import { statusAuth } from 'store/RootStore/AuthStore/AuthStore';
+import rootStore from 'store/RootStore/instance';
+import { Meta } from 'utils/meta';
 import UserPage from './UserPage';
+import styles from "./Account.module.scss"
 
 function Account() {
     const { goToUserPage } = useNavigatePages()
@@ -29,7 +29,6 @@ function Account() {
         rootStore.user.login(email, password)
     }
 
-    console.log(toJS(rootStore.user.authStatus))
     return (
         <>
             {rootStore.user.authStatus === statusAuth.unknown && (

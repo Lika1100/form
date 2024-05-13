@@ -1,11 +1,11 @@
 import cn from "classnames";
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import rootStore from "store/RootStore/instance";
 import logo from "../../assets/logo.svg";
 import styles from "./Header.module.scss";
-import rootStore from "store/RootStore/instance";
-import { observer } from "mobx-react-lite";
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);

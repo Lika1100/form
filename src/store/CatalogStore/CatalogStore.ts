@@ -1,5 +1,5 @@
 import { IReactionDisposer, action, computed, makeObservable, observable, reaction, runInAction } from "mobx";
-import { API_ENDPOINTS, BASE_URL } from "configs/baseUrl";
+import { BASE_URL } from "configs/baseUrl";
 import getItems from "store/ApiStore/ApiStore";
 import { QueryParam } from "store/RootStore/QueryParamsStore";
 import rootStore from "store/RootStore/instance";
@@ -57,7 +57,7 @@ export default class CatalogStore implements ILocalStore {
         this._list = []
         this._meta = Meta.loading
         const { data, status } = await this._apiStore<ProductModel[]>(`${BASE_URL}${endpoint}${this._params}`)
-        console.log(`${BASE_URL}${this._params}`)
+
         runInAction(() => {
             if (status === 200) {
                 this._list = data

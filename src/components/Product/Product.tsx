@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import Card from "components/Card";
 import Loader from "components/Loader";
 import RelatedItems from "components/RelatedItems";
-import { API_ENDPOINTS } from "configs/baseUrl";
 import useNavigatePages from "configs/useNavigatePages";
 import ItemStore from "store/ItemStore";
 import { Meta } from "utils/meta";

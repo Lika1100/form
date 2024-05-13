@@ -1,17 +1,18 @@
+import cn from "classnames";
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { useEffect } from 'react'
-import rootStore from 'store/RootStore/instance';
 import Text from 'components/Text';
+import rootStore from 'store/RootStore/instance';
 import styles from "./UserPage.module.scss";
-import cn from "classnames";
 
 function UserPage() {
     useEffect(() => {
         rootStore.user.authUser()
     }, [rootStore.user])
-    console.log(toJS(rootStore.user.user))
+
     const { name, avatar, role, email } = rootStore.user.user
+
     return (
         <>
             <Text view='title' className={styles.userText}>Profile</Text>
