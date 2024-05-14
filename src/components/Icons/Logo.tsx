@@ -1,15 +1,11 @@
-import * as React from "react";
 import cn from "classnames"
+import * as React from "react";
+import { IconProps } from "./ArrowDropDown";
 
-export type IconProps = React.SVGAttributes<SVGElement> & {
-    className?: string;
-    color?: 'primary' | 'secondary' | 'accent';
-};
-
-const LogoIcon: React.FC<IconProps> = ({ width = 131, height = 42, className, color = "primary", ...props }) => {
+const LogoIcon: React.FC<IconProps> = ({ width = 131, height = 42, className, ...props }) => {
     return (
         <svg width={width} height={height} className={cn(className)} viewBox="0 0 131 42" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-            <g clip-path="url(#clip0_1822_175)">
+            <g clipPath="url(#clip0_1822_175)">
                 <path d="M42 0H0V42H42V0Z" fill="white" />
                 <path d="M32.9034 20.601L31.9654 24.101H13.6534L8.66943 5.50549H12.2954L16.3379 20.601H32.9034Z" fill="#AD7E5C" />
                 <path d="M31.4019 26.201L30.4639 29.701H9.60743L8.66943 26.201H31.4019Z" fill="#518581" />

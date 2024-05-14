@@ -34,22 +34,6 @@ export default class ItemStore implements ILocalStore {
         return this._meta
     }
 
-    async getItem(id: string) {
-        this._meta = Meta.loading
-
-        const { data, status } = await this._apiStore<ProductModel>(`${BASE_URL}${API_ENDPOINTS.PRODUCTS}${id}`)
-
-        runInAction(() => {
-            if (status === 200) {
-                this._meta = Meta.success
-                this._item = Object.assign(data, {})
-                return
-            }
-
-            this._meta = Meta.error
-        })
-    }
-
     constructor() {
         makeObservable<ItemStore, PrivateFields>(this, {
             _item: observable,
@@ -60,7 +44,25 @@ export default class ItemStore implements ILocalStore {
         })
     }
 
+    async getItem(id: string) {
+        this._meta = Meta.loading
+
+        const { data, status } = await this._apiStore<ProductModel>(`${BASE_URL}${API_ENDPOINTS.PRODUCTS}${id}`)
+
+        runInAction(() => {
+            if (status === 200) {
+                this._item = { ...data }
+                this._meta = Meta.success
+                return
+            }
+
+            this._meta = Meta.error
+        })
+    }
 
 
-    destroy(): void { }
+
+    destroy(): void {
+        this._apiStore
+    }
 }

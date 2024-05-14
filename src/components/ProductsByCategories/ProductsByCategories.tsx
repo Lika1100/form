@@ -3,10 +3,11 @@ import { useEffect } from 'react'
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import Card from "components/Card";
+import ArrowLeft from "components/Icons/ArrowLeft";
 import Loader from 'components/Loader';
-import { API_ENDPOINTS } from "configs/baseUrl";
 import useNavigatePages from "configs/useNavigatePages";
 import CatalogStore from "store/CatalogStore";
+import rootStore from "store/RootStore/instance";
 import { useLocalStore } from 'utils/useLocalStore';
 import styles from "./ProductsByCategories.module.scss";
 
@@ -17,7 +18,8 @@ function ProductsByCategories() {
     const productsCategories = useLocalStore(() => new CatalogStore())
 
     useEffect(() => {
-        productsCategories.getList(API_ENDPOINTS.PRODUCTS_BY_CATEGORY, id)
+        rootStore.query.setSearch(`categoryId=${id}`)
+        productsCategories.getList()
     }, [id, productsCategories])
 
     const { list, meta } = productsCategories
@@ -28,7 +30,7 @@ function ProductsByCategories() {
 
     return (
         <div className={styles.categories}>
-            <button onClick={backToProducts} className={styles.categoriesArrow} />
+            <ArrowLeft onClick={backToProducts} className={styles.categoriesArrow} />
             {meta === "success" && list
                 .map(({ price, images, description, id, title, category }) => {
                     return (

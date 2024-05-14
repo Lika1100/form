@@ -35,7 +35,7 @@ const Card: React.FC<CardProps> = ({ id, title, description, images, price, clas
                 alt="card"
             />}
             {view === "horizontal" && (
-                <Carousel images={images} className={styles.cardImage} />
+                <Carousel images={isUrl ? images : [img]} />
             )}
             <div className={styles.cardTitleContainer}>
                 <Text view={view === "vertical" ? 'p-20' : "title"} maxLines={2} weight='bold' color='primary'>{title}</Text>

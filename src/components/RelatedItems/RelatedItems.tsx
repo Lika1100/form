@@ -3,8 +3,8 @@ import { useEffect } from "react"
 import * as React from "react"
 import Card from "components/Card"
 import Text from "components/Text"
-import { API_ENDPOINTS } from "configs/baseUrl"
 import CatalogStore from "store/CatalogStore"
+import rootStore from "store/RootStore/instance"
 import { Meta } from "utils/meta"
 import { useLocalStore } from "utils/useLocalStore"
 import styles from "./RelatedItems.module.scss"
@@ -16,7 +16,9 @@ type RelatedType = {
 function RelatedItems({ categoryId }: RelatedType) {
     const relatedStore = useLocalStore(() => new CatalogStore())
     useEffect(() => {
-        relatedStore.getList(API_ENDPOINTS.PRODUCTS_BY_CATEGORY, `${categoryId}&limit=3&offset=2`)
+        relatedStore._limit = 3
+        rootStore.query.setSearch(`categoryId=${String(categoryId)}`)
+        relatedStore.getList()
     }, [categoryId, relatedStore])
 
     const { list, meta } = relatedStore

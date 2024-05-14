@@ -34,5 +34,5 @@ export default class QueryParamsStore {
       this._params = qs.parse(search);
     }
   }
-  destroy(){}
+  destroy() { }
 }

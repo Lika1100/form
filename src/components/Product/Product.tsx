@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import Card from "components/Card";
+import ArrowLeft from "components/Icons/ArrowLeft";
 import Loader from "components/Loader";
 import RelatedItems from "components/RelatedItems";
 import useNavigatePages from "configs/useNavigatePages";
@@ -10,7 +11,6 @@ import ItemStore from "store/ItemStore";
 import { Meta } from "utils/meta";
 import { useLocalStore } from "utils/useLocalStore";
 import styles from "./Product.module.scss";
-import ArrowLeft from "components/Icons/ArrowLeft";
 
 
 const Product = () => {

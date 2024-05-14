@@ -3,13 +3,13 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import rootStore from "store/RootStore/instance";
-import styles from "./Header.module.scss";
 import BurgerIcon from "components/Icons/Burger";
 import CartIcon from "components/Icons/CartIcon";
-import UserIcon from "components/Icons/UserIcon";
-import LogoIcon from "components/Icons/Logo";
 import CloseIcon from "components/Icons/CloseIcon";
+import LogoIcon from "components/Icons/Logo";
+import UserIcon from "components/Icons/UserIcon";
+import rootStore from "store/RootStore/instance";
+import styles from "./Header.module.scss";
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);

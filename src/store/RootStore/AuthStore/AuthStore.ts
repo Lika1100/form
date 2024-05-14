@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import auth from "store/ApiStore/AuthApi";
-import loginApi from "store/ApiStore/UserApi";
+import loginApi from "store/ApiStore/LoginApi";
 import { UserModel, normalizeUser } from "store/models/user/userModel";
 import { Meta } from "utils/meta";
 
@@ -46,7 +46,7 @@ export default class CartStore {
     async login(email: string, password: string) {
         this._meta = Meta.loading
         try {
-            const { data } = await this._apiLogin<UserModel>(email, password)
+            const { data } = await this._apiLogin(email, password)
             this._token = data.access_token
             await this.authUser()
             this._meta = Meta.success

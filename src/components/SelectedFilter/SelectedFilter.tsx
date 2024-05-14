@@ -3,14 +3,13 @@ import { observer } from "mobx-react-lite";
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from "react-router-dom";
+import ArrowDropDown from "components/Icons/ArrowDropDown";
 import useOutsideClick from 'configs/useOutsideClick';
 import CategoryStore from "store/CategoryStore";
 import rootStore from "store/RootStore/instance";
 import { Meta } from "utils/meta";
 import { useLocalStore } from 'utils/useLocalStore';
-import arrow from "../../assets/arrowDropDown.svg";
 import styles from "./SelectedFilter.module.scss";
-import ArrowDropDown from "components/Icons/ArrowDropDown";
 
 function SelectedFilter() {
 

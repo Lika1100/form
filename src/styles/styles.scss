@@ -6,6 +6,12 @@
     }
 }
 
+@mixin for-maxWidth {
+    @media screen and (max-width: 1240px) {
+        @content;
+    }
+}
+
 @mixin for-tablet {
     @media screen and (max-width: 768px) {
         @content;
@@ -20,6 +26,12 @@
 
 @mixin for-cart {
     @media screen and (max-width: 440px) {
+        @content;
+    }
+}
+
+@mixin for-cartPayment {
+    @media screen and (max-width: 950px) {
         @content;
     }
 }

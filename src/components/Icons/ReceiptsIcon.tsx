@@ -1,10 +1,6 @@
-import * as React from "react";
 import cn from "classnames"
-
-export type IconProps = React.SVGAttributes<SVGElement> & {
-    className?: string;
-    color?: 'primary' | 'secondary' | 'accent';
-};
+import * as React from "react";
+import { IconProps } from "./ArrowDropDown";
 
 const ReceiptsIcon: React.FC<IconProps> = ({ width = 50, height = 50, className, color = "primary", ...props }) => {
     return (

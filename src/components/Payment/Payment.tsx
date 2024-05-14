@@ -1,41 +1,63 @@
-import React, { useState } from 'react'
+import * as React from 'react';
+import { useState } from 'react';
+import styles from "./Payment.module.scss";
+import Input from 'components/Input';
+import Button from 'components/Button';
+import rootStore from 'store/RootStore/instance';
+import { statusAuth } from 'store/RootStore/AuthStore/AuthStore';
+import Text from 'components/Text';
+
 
 export default function Payment() {
-    const [cardInfo, setCardInfo] = useState({
-        cardNum: "",
-        month: "",
-        year: "",
-        cvc: ""
-    })
+    const [cardNum, setCardNum] = useState("")
+    const [cardMonth, setCardMonth] = useState("")
+    const [cardYear, setCardYear] = useState("")
+    const [cardCvc, setCardCvc] = useState("")
 
-
+    const total = rootStore.cart.cart
+        .map(({ price, count }) => price !== null ? price * count : 0)
+        .reduce((acc, prev) => acc + prev, 0)
+    const isAuth = rootStore.user.authStatus === statusAuth.auth
     return (
-        <form onSubmit={(e) => e.preventDefault()}>
-            <input type='text' placeholder='4111 1111 1111 1111' value={cardInfo.cardNum} onChange={(e) => setCardInfo(prev => {
-                return {
-                    ...prev,
-                    cardNum: e.target.value
-                }
-            })} />
-            <input type='text' placeholder='MM' value={cardInfo.month} onChange={(e) => setCardInfo(prev => {
-                return {
-                    ...prev,
-                    month: e.target.value
-                }
-            })} />
-            <input type='text' placeholder='YY' value={cardInfo.year} onChange={(e) => setCardInfo(prev => {
-                return {
-                    ...prev,
-                    year: e.target.value
-                }
-            })} />
-            <input type='text' placeholder='CVC' value={cardInfo.cvc} onChange={(e) => setCardInfo(prev => {
-                return {
-                    ...prev,
-                    cvc: e.target.value
-                }
-            })} />
-            <button>Отправить</button>
+        <form
+            onSubmit={(e) => e.preventDefault()}
+            className={styles.payment}
+        >
+            {!isAuth && (
+                <Text>Please log in to continue the payment</Text>
+            )}
+            <div className={styles.paymentData}>
+                <div className={styles.paymentNum}>
+                    <Input
+                        placeholder='Card number'
+                        value={cardNum}
+                        onChange={setCardNum} />
+                </div>
+                <div className={styles.paymentMonth}>
+                    <Input
+                        placeholder='MM'
+                        value={cardMonth}
+                        onChange={setCardMonth}
+                    />
+                </div>
+                <div>
+                    <Input
+                        className={styles.paymentYear}
+                        placeholder='YY'
+                        value={cardYear}
+                        onChange={setCardYear}
+                    />
+                </div>
+                <div className={styles.paymentCvc}>
+
+                    <Input
+                        placeholder='CVC'
+                        value={cardCvc}
+                        onChange={setCardCvc}
+                    />
+                </div>
+            </div>
+            <Button className={styles.paymentButton} disabled={!isAuth}>Оплатить {total}$</Button>
         </form>
     )
 }
