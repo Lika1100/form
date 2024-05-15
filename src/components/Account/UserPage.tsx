@@ -2,19 +2,19 @@ import cn from "classnames";
 import { observer } from 'mobx-react-lite'
 import React, { useEffect } from 'react'
 import DeliveryIcon from "components/Icons/Delivery";
+import DiscountIcon from "components/Icons/Discount";
+import NewsIcon from "components/Icons/NewsIcon";
 import ReceiptsIcon from "components/Icons/ReceiptsIcon";
 import Text from 'components/Text';
 import rootStore from 'store/RootStore/instance';
 import styles from "./UserPage.module.scss";
-import DiscountIcon from "components/Icons/Discount";
-import NewsIcon from "components/Icons/NewsIcon";
 
 function UserPage() {
     useEffect(() => {
         rootStore.user.authUser()
     }, [])
 
-    const { name, avatar, role, email } = rootStore.user.user
+    const { name, avatar, email } = rootStore.user.user
 
     return (
         <>
@@ -58,7 +58,7 @@ function UserPage() {
                     <div>
                         <Text view='title'>NEWS</Text>
                         <Text view='p-20'>
-                            Don't miss the new collection of clothes in a week
+                            Do not miss the new collection of clothes in a week
                         </Text>
                     </div>
                 </div>

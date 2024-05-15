@@ -1,14 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import DeleteIcon from 'components/Icons/DeleteIcon';
 import EmptyCart from 'components/Icons/EmptyCart';
 import Text from 'components/Text';
 import isImgUrl from 'configs/isImgUrl';
 import rootStore from 'store/RootStore/instance';
 import img from "../../assets/imgSoon.jpg"
-import styles from "./Cart.module.scss";
-import { Link } from 'react-router-dom';
 import pay from "../../assets/pay.png"
+import styles from "./Cart.module.scss";
 
 
 function Cart() {

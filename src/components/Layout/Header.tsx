@@ -50,7 +50,7 @@ function Header() {
                         Categories
                     </Link>
                     <Link
-                        to="#"
+                        to="/about"
                         className={styles.headerItem}
                         onClick={() => setIsOpen(false)}>
                         About us
