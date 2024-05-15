@@ -10,7 +10,6 @@ import isValidPassword from 'configs/isValidPassword';
 import { statusAuth } from 'store/RootStore/AuthStore/AuthStore';
 import rootStore from 'store/RootStore/instance';
 import { Meta } from 'utils/meta';
-import UserPage from './UserPage';
 import styles from "./Account.module.scss"
 
 function Account() {
@@ -125,9 +124,6 @@ function Account() {
                         </Button>
                     </form>
                 </div>
-            )}
-            {rootStore.user.authStatus === statusAuth.auth && (
-                <UserPage />
             )}
         </>
     )

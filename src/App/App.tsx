@@ -11,6 +11,10 @@ import ProductsByCategories from 'components/ProductsByCategories';
 import AboutPage from 'pages/AboutPage';
 import ProductsPage from 'pages/ProductsPage';
 import { useQueryParamsStoreInit } from 'store/RootStore/hooks/useQueryParams';
+import UserPage from 'components/Account/UserPage';
+import PrivateRoute from 'components/PrivateRoute';
+import rootStore from 'store/RootStore/instance';
+import { statusAuth } from 'store/RootStore/AuthStore/AuthStore';
 
 
 
@@ -25,7 +29,11 @@ const App = () => {
           <Route path="/categories" element={<Categories />} />
           <Route path="/categoryId/:id" element={<ProductsByCategories />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/user" element={<Account />} />
+          <Route path="/login" element={<Account />} />
+          <Route path="/user" element={
+            <PrivateRoute isAuthorized={rootStore.user.isAuthorized}>
+              <UserPage />
+            </PrivateRoute>} />
           <Route path='/payment' element={<Payment />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<Navigate to="/" />} />

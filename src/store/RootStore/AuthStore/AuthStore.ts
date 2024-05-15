@@ -4,7 +4,7 @@ import loginApi from "store/ApiStore/LoginApi";
 import { UserModel, normalizeUser } from "store/models/user/userModel";
 import { Meta } from "utils/meta";
 
-type PrivateFields = "_user" | "_meta" | "_token" | "_authStatus";
+type PrivateFields = "_user" | "_meta" | "_token" | "_authStatus" | "_loginData";
 
 export enum statusAuth {
     unknown = "unknown",
@@ -23,6 +23,10 @@ export default class CartStore {
     }
     private _apiLogin = loginApi
     private _apiAuth = auth
+    private _loginData = {
+        email: "",
+        password: ""
+    }
     private _meta: Meta = Meta.initial
     private _token: string = ""
     private _authStatus: statusAuth = statusAuth.unknown
@@ -43,9 +47,15 @@ export default class CartStore {
         return this._meta
     }
 
+    get isAuthorized(): boolean {
+        return this._authStatus === statusAuth.auth;
+    }
+
     async login(email: string, password: string) {
         this._meta = Meta.loading
+
         try {
+            this._loginData = { email, password }
             const { data } = await this._apiLogin(email, password)
             this._token = data.access_token
             await this.authUser()

@@ -1,12 +1,15 @@
 {
   "name": "e-commerce",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": "true",
   "author": "Lika",
   "license": "MIT",
+  "homepage": "https://lika1100.github.io/e-commerce-webpack",
   "scripts": {
     "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development",
-    "build": "NODE_ENV=production npx webpack --mode=production",
+    "build": "webpack --mode production",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
@@ -37,6 +40,7 @@
     "favicons": "^7.2.0",
     "favicons-webpack-plugin": "^6.0.1",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.6.0",
     "media-query-plugin": "^1.5.0",
     "mini-css-extract-plugin": "^2.9.0",
@@ -67,6 +71,7 @@
     "react-spring": "^9.7.3",
     "react-spring-carousel": "^2.0.19",
     "react-toastify": "^9.1.1",
-    "regenerator-runtime": "^0.14.1"
+    "regenerator-runtime": "^0.14.1",
+    "sharp": "^0.33.3"
   }
 }
