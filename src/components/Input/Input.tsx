@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import cn from "classnames";
 import * as React from "react";
 import styles from "./Input.module.scss"

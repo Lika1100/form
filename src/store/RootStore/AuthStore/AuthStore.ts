@@ -3,8 +3,9 @@ import auth from "store/ApiStore/AuthApi";
 import loginApi from "store/ApiStore/LoginApi";
 import { UserModel, normalizeUser } from "store/models/user/userModel";
 import { Meta } from "utils/meta";
+import { getToken, saveToken } from 'utils/token';
 
-type PrivateFields = "_user" | "_meta" | "_token" | "_authStatus" | "_loginData";
+type PrivateFields = "_user" | "_meta" | "_authStatus"
 
 export enum statusAuth {
     unknown = "unknown",
@@ -23,12 +24,7 @@ export default class CartStore {
     }
     private _apiLogin = loginApi
     private _apiAuth = auth
-    private _loginData = {
-        email: "",
-        password: ""
-    }
     private _meta: Meta = Meta.initial
-    private _token: string = ""
     private _authStatus: statusAuth = statusAuth.unknown
 
     constructor() {
@@ -55,9 +51,9 @@ export default class CartStore {
         this._meta = Meta.loading
 
         try {
-            this._loginData = { email, password }
-            const { data } = await this._apiLogin(email, password)
-            this._token = data.access_token
+            const authData = { email, password }
+            const { data } = await this._apiLogin(authData.email, authData.password)
+            saveToken(data.access_token)
             await this.authUser()
             this._meta = Meta.success
         } catch (err) {
@@ -67,10 +63,11 @@ export default class CartStore {
 
     async authUser() {
         try {
-            const { status, data } = await this._apiAuth(this._token)
+            const token = getToken()
+            const { status, data } = await this._apiAuth(token)
             runInAction(() => {
                 if (status === 200) {
-                    this._user = normalizeUser({ ...data })
+                    this._user = normalizeUser(data)
                     this._authStatus = statusAuth.auth
                 }
             })

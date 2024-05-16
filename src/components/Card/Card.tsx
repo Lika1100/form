@@ -1,12 +1,12 @@
 import cn from "classnames";
 import * as React from "react";
+import { useIndexedDB } from "react-indexed-db-hook";
 import Button from "components/Button";
 import Carousel from "components/Carousel";
 import Text from "components/Text";
+import addToCart from "configs/add";
 import isImgUrl from "configs/isImgUrl";
 import useNavigatePages from "configs/useNavigatePages";
-//import { addProducts } from "utils/CartEvents/addProducts";
-import rootStore from "store/RootStore/instance";
 import { CategoryModel } from "store/models/products";
 import img from "../../assets/imgSoon.jpg"
 import styles from "./Card.module.scss";
@@ -22,10 +22,12 @@ export type CardProps = {
     view?: "horizontal" | "vertical"
 };
 
-const Card: React.FC<CardProps> = ({ id, title, description, images, price, className, category, view = "vertical" }) => {
+const Card: React.FC<CardProps> = ({ id, title, description, images, price, className, view = "vertical" }) => {
     const { goToProduct, goToPayment } = useNavigatePages()
     const imgUrl = images[0]
     const isUrl = isImgUrl(imgUrl)
+    const { add, update, getByID, getAll } = useIndexedDB("cart")
+    const image = isUrl ? imgUrl : img
 
     return (
         <div className={cn(className, styles.card, styles[`${view}`])} key={id}>
@@ -47,7 +49,7 @@ const Card: React.FC<CardProps> = ({ id, title, description, images, price, clas
                             <Button view="white" onClick={goToPayment}>Buy Now</Button>
                         )}
                         <Button
-                            onClick={() => rootStore.cart.addProduct({ id, price, title, images, count: 1, description, category })}
+                            onClick={() => addToCart({ id, price, title, image, add, update, getByID, getAll })}
                         >
                             Add to Cart
                         </Button>

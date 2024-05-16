@@ -1,20 +1,25 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
+import { useIndexedDB } from 'react-indexed-db-hook';
 import { Link } from 'react-router-dom';
 import DeleteIcon from 'components/Icons/DeleteIcon';
 import EmptyCart from 'components/Icons/EmptyCart';
 import Text from 'components/Text';
+import addToCart from 'configs/add';
+import deleteFromCart from 'configs/deleteFromCart';
 import isImgUrl from 'configs/isImgUrl';
+import removeFromCart from 'configs/removeFromCart';
 import rootStore from 'store/RootStore/instance';
 import img from "../../assets/imgSoon.jpg"
 import pay from "../../assets/pay.png"
 import styles from "./Cart.module.scss";
 
-
 function Cart() {
-  const products = rootStore.cart.cart
+  const { getAll, update, deleteRecord, add, getByID } = useIndexedDB("cart");
 
-  if (products.length === 0) {
+  const cart = rootStore.cart.cart
+
+  if (cart.length === 0) {
     return (
       <div className={styles.cartEmpty}>
         <Text>Корзина пуста</Text>
@@ -23,40 +28,40 @@ function Cart() {
     )
   }
 
-  const total = products
-    .map(({ price, count }) => price !== null ? price * count : 0)
-    .reduce((acc, prev) => acc + prev, 0)
+  const total = cart
+    .map(({ price, count }) => +price !== null ? +price * +count : 0)
+    .reduce((acc, prev) => +acc + prev, 0)
 
   return (
     <div className={styles.container}>
       <div className={styles.cart}>
-        {products.map(({ id, title, price = 1, images, count, category, description }) => {
-          const imgUrl = images[0]
+        {cart.map(({ id, title, price, image, count }) => {
+          const imageValid = isImgUrl(image) ? image : img
           return (
             <div key={id} className={styles.cartItem}>
-              <img src={isImgUrl(imgUrl) ? imgUrl : img} className={styles.cartImg} />
+              <img src={imageValid} className={styles.cartImg} />
               <Text className={styles.cartTitle} view='p-20'>
                 {title}
               </Text>
               <div className={styles.cartCounter}>
                 <button className={styles.cartCounterButton}
-                  onClick={() => rootStore.cart.removeElement(id)}
+                  onClick={() => removeFromCart({ id, title, price, image, count, update, getByID, getAll })}
                   disabled={count === 1}
                 >
                   -
                 </button>
                 <Text className={styles.cartCounterNum} view='p-18'>{count}</Text>
                 <button
-                  onClick={() => rootStore.cart.addProduct({ price, title, count, images, id, category, description })}
+                  onClick={() => addToCart({ price, title, count, image: imageValid, id, add, update, getByID, getAll })}
                   className={styles.cartCounterButton}>
                   +
                 </button>
               </div>
               <div className={styles.cartRight}>
-                <Text weight='bold'>{price! * count}$</Text>
+                <Text weight='bold'>{+price * +count}$</Text>
                 <DeleteIcon
                   className={styles.cartRemoveItem}
-                  onClick={() => rootStore.cart.deleteElement(id)}
+                  onClick={() => deleteFromCart({ id, deleteRecord, getAll })}
                 />
               </div>
             </div>
