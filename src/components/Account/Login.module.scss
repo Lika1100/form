@@ -9,20 +9,7 @@
     text-align: center;
 
     &__message {
-        position: absolute;
-        top: 48px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        background-color: rgba($color: #fff, $alpha: 0.9);
-        border: 0.5px solid $text-accent;
-        border-radius: 8px;
-        width: 300px;
-        height: 100px;
-        transform: translateY(-150px);
-        transition: all 300ms ease-in-out;
-        opacity: 0;
+        @include for-alert;
 
         &__button {
             border: 0;

@@ -4,6 +4,24 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    position: relative;
+
+    &__message {
+        @include for-alert;
+        width: 400px;
+        opacity: 1;
+
+        &__button {
+            padding: 5px 10px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(-45px);
+    transition: all 0.5s ease;
 }
 
 .payment {
@@ -12,6 +30,11 @@
     max-width: 400px;
     gap: 12px;
     align-items: center;
+
+    &__loader {
+        @include loaderPosition;
+        text-align: center;
+    }
 
     &__button {
         border-radius: 8px;
@@ -47,6 +70,14 @@
 
     &__cvc {
         grid-area: cvc;
+    }
+
+    @include for-phone {
+        max-width: 300px;
+
+        &__data {
+            grid-template-columns: 80px 80px 15px 90px;
+        }
     }
 
 }
