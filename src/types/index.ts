@@ -1,1 +1,1 @@
-export default "./SelectedType"
+export default './SelectedType';

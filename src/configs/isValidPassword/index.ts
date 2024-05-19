@@ -1,1 +1,1 @@
-export { default } from "./isValidPassword"
+export { default } from './isValidPassword';

@@ -1,1 +1,1 @@
-export {default} from "./ItemStore"
+export { default } from './ItemStore';

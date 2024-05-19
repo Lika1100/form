@@ -1,2 +1,2 @@
 export * from './baseUrl';
-export * from "./endPoints"
+export * from './endPoints';

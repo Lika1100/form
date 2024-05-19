@@ -1,13 +1,12 @@
-import { action, computed, makeObservable, observable } from "mobx";
-import { ProductModel } from "store/models/products";
-
+import { action, computed, makeObservable, observable } from 'mobx';
+import { ProductModel } from 'store/models/products';
 
 type Count = {
-  count: number
-}
+  count: number;
+};
 export type CartProps = ProductModel & Count;
 
-type PrivateFields = "_cart";
+type PrivateFields = '_cart';
 
 type CardProps = {
   id: number;
@@ -18,22 +17,22 @@ type CardProps = {
 };
 
 export default class CartStore {
-  private _cart: CardProps[] = []
+  private _cart: CardProps[] = [];
   constructor() {
     makeObservable<CartStore, PrivateFields>(this, {
       _cart: observable.ref,
       cart: computed,
-      upDateCart: action
-    })
+      upDateCart: action,
+    });
   }
 
   get cart(): CardProps[] {
-    return this._cart
+    return this._cart;
   }
 
   upDateCart(event: CardProps[]) {
-    this._cart = [...event]
+    this._cart = [...event];
   }
 
-  destroy() { }
+  destroy() {}
 }

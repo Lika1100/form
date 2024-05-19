@@ -1,1 +1,1 @@
-export {default} from "./isImgUrl"
+export { default } from './isImgUrl';

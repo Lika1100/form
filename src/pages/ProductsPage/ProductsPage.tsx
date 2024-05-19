@@ -1,70 +1,65 @@
-import cn from "classnames";
+import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import * as React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 import About from 'components/About';
-import ArrowUp from "components/Icons/ArrowUp";
+import ArrowUp from 'components/Icons/ArrowUp';
 import Loader from 'components/Loader';
 import Products from 'components/Products';
-import styles from "components/Products/Products.module.scss"
+import styles from 'components/Products/Products.module.scss';
 import Search from 'components/Search';
 import SelectedFilter from 'components/SelectedFilter';
 import CatalogStore from 'store/CatalogStore';
-import rootStore from "store/RootStore/instance";
+import rootStore from 'store/RootStore/instance';
 import { Meta } from 'utils/meta';
 import { useLocalStore } from 'utils/useLocalStore';
-import s from "./ProductPage.module.scss";
+import s from './ProductPage.module.scss';
 
 function ProductsPage() {
   const productsStore = useLocalStore(() => new CatalogStore());
   const [searchParams, setSearchParams] = useSearchParams();
-  const [scrollButton, setScrollButton] = React.useState("hidden")
+  const [scrollButton, setScrollButton] = React.useState('hidden');
 
   const next = React.useCallback(() => {
-    let page = searchParams.get("page")
+    let page = searchParams.get('page');
 
     if (page === null) {
-      page = "2"
+      page = '2';
     } else {
-      page = String(+page + 1)
+      page = String(+page + 1);
     }
 
-    searchParams.set("page", page)
-    setSearchParams(searchParams)
-
-
-  }, [searchParams, setSearchParams])
+    searchParams.set('page', page);
+    setSearchParams(searchParams);
+  }, [searchParams, setSearchParams]);
 
   useEffect(() => {
-    rootStore.query.setSearch(searchParams.toString())
+    rootStore.query.setSearch(searchParams.toString());
 
-    productsStore.getList()
-  }, [productsStore, setSearchParams, searchParams])
+    productsStore.getList();
+  }, [productsStore, setSearchParams, searchParams]);
 
-  const { meta, list, all } = productsStore
+  const { meta, list, all } = productsStore;
 
   function onScroll() {
     const position = window.scrollY;
 
     if (position > 20) {
-      setScrollButton("show")
+      setScrollButton('show');
     } else {
-      setScrollButton("hidden")
+      setScrollButton('hidden');
     }
   }
 
   function onClick() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
 
   return (
     <>
-      <ArrowUp
-        onClick={onClick}
-        className={cn(s.scrollToTopBtn, s[scrollButton])}
-      />
+      <ArrowUp onClick={onClick} className={cn(s.scrollToTopBtn, s[scrollButton])} />
       <About />
       <Search />
       <SelectedFilter />
@@ -83,7 +78,7 @@ function ProductsPage() {
         <Products list={all} />
       </InfiniteScroll>
     </>
-  )
+  );
 }
 
 export default observer(ProductsPage);
