@@ -7,7 +7,7 @@
   "homepage": "https://lika1100.github.io/e-commerce-webpack",
   "scripts": {
     "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development",
-    "build": "npx webpack --mode production",
+    "build": "NODE_ENV=production npx webpack --mode=production",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
