@@ -13,7 +13,7 @@ export enum statusAuth {
   noAuth = 'noAuth',
 }
 
-export default class CartStore {
+export default class AuthStore {
   private _user: UserModel = {
     id: 0,
     email: '',
@@ -28,7 +28,7 @@ export default class CartStore {
   private _authStatus: statusAuth = statusAuth.unknown;
 
   constructor() {
-    makeAutoObservable<CartStore, PrivateFields>(this);
+    makeAutoObservable<AuthStore, PrivateFields>(this);
   }
 
   get user() {

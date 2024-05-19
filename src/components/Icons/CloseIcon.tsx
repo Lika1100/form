@@ -1,10 +1,10 @@
 import cn from 'classnames';
 import * as React from 'react';
-import { IconProps } from './ArrowDropDown';
+import BasicIcon, { IconProps } from './BasicIcon';
 
 const CloseIcon: React.FC<IconProps> = ({ width = 30, height = 30, className, color = 'primary', ...props }) => {
   return (
-    <svg
+    <BasicIcon
       width={width}
       height={height}
       className={cn(className)}
@@ -27,7 +27,7 @@ const CloseIcon: React.FC<IconProps> = ({ width = 30, height = 30, className, co
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
+    </BasicIcon>
   );
 };
 

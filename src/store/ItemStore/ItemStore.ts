@@ -45,7 +45,6 @@ export default class ItemStore implements ILocalStore {
 
   async getItem(id: string) {
     this._meta = Meta.loading;
-
     const { data, status } = await this._apiStore<ProductModel>(`${BASE_URL}${API_ENDPOINTS.PRODUCTS}${id}`);
 
     runInAction(() => {

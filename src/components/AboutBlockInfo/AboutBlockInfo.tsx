@@ -1,3 +1,4 @@
+import cn from "classnames";
 import * as React from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import Text from 'components/Text';
@@ -25,21 +26,21 @@ export default function AboutBlockInfo() {
   return (
     <div className={styles.container}>
       <div className={styles.containerSquares}>
-        <div className={styles.containerSquaresBlock}>
-          <Text view="p-20" className={styles.containerSquaresBlockText}>
+        <div className={cn(styles.containerBlock, styles.containerFirst)}>
+          <Text view="p-28" className={styles.containerText}>
             Lorem ipsum odor amet, consectetuer adipiscing elit. Primis eros nunc fringilla id rutrum nibh. Orci
             convallis pulvinar urna fusce at purus neque nam leo?
           </Text>
         </div>
-        <div className={styles.containerSquaresBlock} />
-        <div className={styles.containerSquaresBlock}>
-          <Text view="title" className={styles.containerSquaresBlockText}>
+        <div className={styles.containerBlock} />
+        <div className={cn(styles.containerBlock, styles.containerSecond)}>
+          <Text view="p-28" className={styles.containerText}>
             Augue malesuada massa torquent diam tortor; porttitor dis massa. Habitasse nunc ad placerat; ante netus
-            gravida a porttitor. Ridiculus proin etiam justo vivamus.
+            gravida a porttitor.
           </Text>
         </div>
-        <animated.div className={styles.containerSquaresBlock} style={{ background }}>
-          <Text view="title" className={styles.containerSquaresBlockText}>
+        <animated.div className={cn(styles.containerBlock, styles.containerThird)} style={{ background }}>
+          <Text view="p-28" className={styles.containerText}>
             Ridiculus proin etiam justo dignissim suscipit maecenas.
           </Text>
         </animated.div>

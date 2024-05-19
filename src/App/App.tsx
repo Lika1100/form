@@ -5,7 +5,6 @@ import Login from 'components/Account/Login';
 import UserPage from 'components/Account/UserPage';
 import Cart from 'components/Cart';
 import Categories from 'components/Categories';
-import Container from 'components/Container';
 import Layout from 'components/Layout';
 import Payment from 'components/Payment';
 import PrivateRoute from 'components/PrivateRoute';
@@ -30,7 +29,6 @@ const App = () => {
   }, [getAll]);
 
   return (
-    <Container>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<ProductsPage />} />
@@ -52,7 +50,6 @@ const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
-    </Container>
   );
 };
 

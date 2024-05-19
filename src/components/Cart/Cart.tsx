@@ -18,6 +18,7 @@ function Cart() {
   const { getAll, update, deleteRecord, add, getByID } = useIndexedDB('cart');
 
   const cart = rootStore.cart.cart;
+  const total = rootStore.cart.getSum()
 
   if (cart.length === 0) {
     return (
@@ -27,10 +28,6 @@ function Cart() {
       </div>
     );
   }
-
-  const total = cart
-    .map(({ price, count }) => (+price !== null ? +price * +count : 0))
-    .reduce((acc, prev) => +acc + prev, 0);
 
   return (
     <div className={styles.container}>

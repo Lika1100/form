@@ -1,10 +1,10 @@
 import cn from 'classnames';
 import * as React from 'react';
-import { IconProps } from './ArrowDropDown';
+import BasicIcon, { IconProps } from './BasicIcon';
 
 const UserIcon: React.FC<IconProps> = ({ width = 30, height = 30, className, color = 'primary', ...props }) => {
   return (
-    <svg
+    <BasicIcon
       className={cn(className)}
       width={width}
       height={height}
@@ -27,7 +27,7 @@ const UserIcon: React.FC<IconProps> = ({ width = 30, height = 30, className, col
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
+    </BasicIcon>
   );
 };
 

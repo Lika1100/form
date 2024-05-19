@@ -1,16 +1,13 @@
-import cn from 'classnames';
 import * as React from 'react';
-import { IconProps } from './ArrowDropDown';
+import BasicIcon, { IconProps } from './BasicIcon'
 
-const ArrowUp: React.FC<IconProps> = ({ width = 24, height = 25, className, color = 'primary', ...props }) => {
+const ArrowUp: React.FC<IconProps> = ({ width = 24, height = 24, className, color = 'primary', ...props }) => {
   return (
-    <svg
+    <BasicIcon
       width={width}
       height={height}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn(className)}
+      viewBox='0 0 24 24'
+      className={className}
       {...props}
     >
       <path
@@ -20,7 +17,7 @@ const ArrowUp: React.FC<IconProps> = ({ width = 24, height = 25, className, colo
                   11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
         style={{ fill: `var(--text-${color}` }}
       />
-    </svg>
+    </BasicIcon>
   );
 };
 

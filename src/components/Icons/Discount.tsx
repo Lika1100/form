@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { IconProps } from './ArrowDropDown';
+import BasicIcon, { IconProps } from './BasicIcon';
 
 const DiscountIcon: React.FC<IconProps> = ({ width = 50, height = 50, color = 'primary', ...props }) => {
   return (
-    <svg width={width} height={height} viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <BasicIcon width={width} height={height} viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         d="M18 3.91992H6C3.79086 3.91992 2 5.71078 2 7.91992V17.9199C2 20.1291 3.79086 21.9199 6 21.9199H18C20.2091 21.9199 22 20.1291 22 17.9199V7.91992C22 5.71078 20.2091 3.91992 18 3.91992Z"
         style={{ stroke: `var(--text-${color})` }}
@@ -32,7 +32,7 @@ const DiscountIcon: React.FC<IconProps> = ({ width = 50, height = 50, color = 'p
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
+    </BasicIcon>
   );
 };
 

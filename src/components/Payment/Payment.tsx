@@ -11,22 +11,39 @@ import rootStore from 'store/RootStore/instance';
 import styles from './Payment.module.scss';
 
 function Payment() {
-  const [cardNum, setCardNum] = useState('');
-  const [cardMonth, setCardMonth] = useState('');
-  const [cardYear, setCardYear] = useState('');
-  const [cardCvc, setCardCvc] = useState('');
+  const [cardNum, setCardNum] = useState('1111 2222 3333 4444');
+  const [cardMonth, setCardMonth] = useState('01');
+  const [cardYear, setCardYear] = useState('25');
+  const [cardCvc, setCardCvc] = useState('123');
   const [isLoading, setIsLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState({
     text: '',
-    show: 'hidden',
+    show: 'hidden'
   });
+
   const navigate = useNavigate();
 
-  const total = rootStore.cart.cart
-    .map(({ price, count }) => (price !== null ? price * count : 0))
-    .reduce((acc, prev) => acc + prev, 0);
-
+  const total = rootStore.cart.getSum();
   const isAuth = rootStore.user.isAuthorized;
+
+  function isValidDate(card: string, month: string, year: string, cvc: string) {
+    const isValidCard = card.split(" ").join("").length === 16
+    const isValidMonth = month.length === 2 && +month > 0 && +month <= 12
+    const isValidYear = year.length === 2 && +year > 24 && +year <= 99
+    const isValidCvc = cvc.length === 3 && typeof +cvc === 'number'
+
+    if (isValidCard && isValidMonth && isValidYear && isValidCvc) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  function formattedCard() {
+    setCardNum(() => cardNum.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ').trim())
+  }
+
+  const isValid = isValidDate(cardNum, cardMonth, cardYear, cardCvc)
 
   function onPay() {
     setTimeout(() => {
@@ -46,6 +63,7 @@ function Payment() {
     });
     navigate('/');
   }
+  
   if (isLoading) {
     return (
       <div className={styles.paymentLoader}>
@@ -54,7 +72,7 @@ function Payment() {
       </div>
     );
   }
-
+  
   return (
     <div className={styles.wrap}>
       <div className={cn(styles.wrapMessage, styles[alertMessage.show])}>
@@ -69,7 +87,11 @@ function Payment() {
         {!isAuth && <Text view="p-20">Please log in to continue the payment</Text>}
         <div className={styles.paymentData}>
           <div className={styles.paymentNum}>
-            <Input placeholder="Card number" value={cardNum} onChange={setCardNum} />
+            <Input 
+              placeholder="1111 2222 3333 4444" 
+              value={cardNum} 
+              onChange={setCardNum} 
+              onBlur={() => formattedCard()}/>
           </div>
           <div className={styles.paymentMonth}>
             <Input placeholder="MM" value={cardMonth} onChange={setCardMonth} />
@@ -81,7 +103,7 @@ function Payment() {
             <Input placeholder="CVC" value={cardCvc} onChange={setCardCvc} />
           </div>
         </div>
-        <Button className={styles.paymentButton} disabled={!isAuth || alertMessage.show === 'show'} onClick={onPay}>
+        <Button className={styles.paymentButton} disabled={!isAuth || !isValid} onClick={onPay}>
           Pay {total === 0 ? '' : `${total}$`}
         </Button>
       </form>

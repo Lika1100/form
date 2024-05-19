@@ -5,7 +5,7 @@ import 'styles/styles.scss';
 
 export type TextProps = {
   className?: string;
-  view?: 'title' | 'button' | 'p-20' | 'p-18' | 'p-16' | 'p-14';
+  view?: 'title' | 'button' | 'p-28' | 'p-20' | 'p-18' | 'p-16' | 'p-14';
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'p' | 'span';
   weight?: 'normal' | 'medium' | 'bold';
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export type TextProps = {
   maxLines?: number;
 };
 
-const Text: React.FC<TextProps> = ({ view, tag = 'p', weight, children, color = 'inherit', maxLines, className }) => {
+const Text: React.FC<TextProps> = ({ view, tag = 'p', weight, children, color = 'primary', maxLines, className }) => {
   const Tag = tag;
   return (
     <>

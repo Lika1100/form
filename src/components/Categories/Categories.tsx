@@ -39,8 +39,7 @@ function Categories() {
                 onError={({ currentTarget }) => {
                   currentTarget.src = img;
                 }}
-                className={styles.categoriesImg}
-              />
+                className={styles.categoriesImg} />
               <Text view="p-20" maxLines={2} weight="bold" color="primary">
                 {name}
               </Text>
