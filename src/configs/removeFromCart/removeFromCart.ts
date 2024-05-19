@@ -1,4 +1,4 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import rootStore from "store/RootStore/instance";
 
 export type indexRemoveProps = {
