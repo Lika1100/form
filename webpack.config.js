@@ -101,6 +101,7 @@ module.exports = {
       styles: path.join(srcPath, 'styles'),
       utils: path.join(srcPath, 'utils'),
       store: path.join(srcPath, 'store'),
+      assets: path.join(srcPath, 'assets'),
       pages: path.join(srcPath, 'pages'),
       App: path.join(srcPath, 'App'),
     }

@@ -17,6 +17,7 @@
     position: relative;
     flex-direction: column;
     gap: 24px;
+    z-index: 999;
 
     &__item {
         @include boxShadow;
@@ -108,6 +109,7 @@
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        z-index: 1;
     }
 
     &__img_pay {
