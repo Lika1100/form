@@ -18,7 +18,7 @@ function Header() {
     setIsOpen((prev) => !prev);
   };
 
-  const amountOfProducts = rootStore.cart.getAmountOfProducts()
+  const amountOfProducts = rootStore.cartStore.getAmountOfProducts()
 
   return (
     <>

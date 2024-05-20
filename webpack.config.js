@@ -1,14 +1,15 @@
 const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 const MediaQueryPlugin = require("media-query-plugin");
-const FaviconPlugin = require("favicons-webpack-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const buildPath = path.resolve(__dirname, 'dist');
 const srcPath = path.resolve(__dirname, 'src');
 const isProd = process.env.NODE_ENV === 'production';
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getSettingsForStyles = (withModules = false) => {
   return [
     isProd ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -88,10 +89,7 @@ module.exports = {
     }),
     isProd && new MediaQueryPlugin(),
     !isProd && new ReactRefreshWebpackPlugin(),
-    new TsCheckerPlugin(),
-    /* new FaviconPlugin({
-      logo: "./src/favicon.png"
-    }) */
+    new TsCheckerPlugin()
   ],
   resolve: {
     extensions: ['.tsx', '.jsx', '.js', '.ts', '.scss'],

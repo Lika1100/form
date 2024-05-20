@@ -16,7 +16,7 @@ function removeFromCart({ title, price, image, id, getByID, update, getAll }: in
   getByID(id).then((res) => {
     update({ id, price, title, image, count: res.count - 1 });
     getAll().then((res) => {
-      rootStore.cart.upDateCart(res);
+      rootStore.cartStore.upDateCart(res);
     });
   });
 }

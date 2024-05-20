@@ -10,7 +10,7 @@ function deleteFromCart({ id, deleteRecord, getAll }: indexDeleteProps) {
   deleteRecord(id);
 
   getAll().then((cartData) => {
-    rootStore.cart.upDateCart(cartData);
+    rootStore.cartStore.upDateCart(cartData);
   });
 }
 

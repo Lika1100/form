@@ -7,7 +7,10 @@ import Button from 'components/Button';
 import Input from 'components/Input';
 import Loader from 'components/Loader';
 import Text from 'components/Text';
+import isValidDate from 'configs/isValidDate';
+import InputStore from 'store/InputStore/InputStore';
 import rootStore from 'store/RootStore/instance';
+import { useLocalStore } from 'utils/useLocalStore';
 import styles from './Payment.module.scss';
 
 function Payment() {
@@ -16,51 +19,29 @@ function Payment() {
   const [cardYear, setCardYear] = useState('25');
   const [cardCvc, setCardCvc] = useState('123');
   const [isLoading, setIsLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState({
-    text: '',
-    show: 'hidden'
-  });
+  const inputStore = useLocalStore(() => new InputStore())
 
   const navigate = useNavigate();
 
-  const total = rootStore.cart.getSum();
-  const isAuth = rootStore.user.isAuthorized;
-
-  function isValidDate(card: string, month: string, year: string, cvc: string) {
-    const isValidCard = card.split(" ").join("").length === 16
-    const isValidMonth = month.length === 2 && +month > 0 && +month <= 12
-    const isValidYear = year.length === 2 && +year > 24 && +year <= 99
-    const isValidCvc = cvc.length === 3 && typeof +cvc === 'number'
-
-    if (isValidCard && isValidMonth && isValidYear && isValidCvc) {
-      return true
-    } else {
-      return false
-    }
-  }
+  const total = rootStore.cartStore.getSum();
+  const isAuth = rootStore.userStore.isAuthorized;
 
   function formattedCard() {
     setCardNum(() => cardNum.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ').trim())
   }
 
   const isValid = isValidDate(cardNum, cardMonth, cardYear, cardCvc)
-
+  const message = 'Your payment is success'
   function onPay() {
     setTimeout(() => {
       setIsLoading(false);
-      setAlertMessage((prev) => {
-        prev.show = 'show';
-        prev.text = 'Your payment is success';
-        return prev;
-      });
+      inputStore._isError = true
     }, 3000);
-    setIsLoading(true);
+    setIsLoading(true)
   }
 
   function onClick() {
-    setAlertMessage(() => {
-      return { ...alertMessage, show: 'hidden' };
-    });
+    inputStore._isError = false
     navigate('/');
   }
   
@@ -75,9 +56,9 @@ function Payment() {
   
   return (
     <div className={styles.wrap}>
-      <div className={cn(styles.wrapMessage, styles[alertMessage.show])}>
+      <div className={cn(styles.wrapMessage, inputStore.isError ? styles.show : "")}>
         <Text view="p-20" className={styles.wrapMessageText}>
-          {alertMessage.text}
+          {message}
         </Text>
         <Button className={styles.wrapMessageButton} onClick={onClick}>
           OK

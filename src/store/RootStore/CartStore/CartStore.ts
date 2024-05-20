@@ -29,6 +29,8 @@ export default class CartStore {
       sum: computed,
       cart: computed,
       upDateCart: action,
+      getSum: action,
+      getAmountOfProducts: action,
     });
   }
 

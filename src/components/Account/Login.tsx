@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalStore } from 'mobx-react-lite';
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
@@ -8,7 +8,7 @@ import Loader from 'components/Loader';
 import Text from 'components/Text';
 import isValidEmail from 'configs/isValidEmail';
 import isValidPassword from 'configs/isValidPassword';
-import { statusAuth } from 'store/RootStore/AuthStore/AuthStore';
+import InputStore from 'store/InputStore/InputStore';
 import rootStore from 'store/RootStore/instance';
 import { Meta } from 'utils/meta';
 import styles from './Login.module.scss';
@@ -16,82 +16,37 @@ import styles from './Login.module.scss';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [alertMessage, setAlertMessage] = useState({
-    text: '',
-    show: 'hidden',
-  });
+  const inputStore = useLocalStore(() => new InputStore())
+  
   const navigate = useNavigate();
 
-  if (rootStore.user.meta === Meta.loading) {
+  if (rootStore.userStore.meta === Meta.loading) {
     <Loader size="l" />;
   }
+  const errorMessage = inputStore.getMessage(email, password);
 
   const onClick = useCallback(async () => {
-    await rootStore.user.login(email, password);
-
-    setAlertMessage((prev) => {
-      prev.show = 'show';
-      return {
-        ...prev,
-      };
-    });
-
-    if (!isValidEmail(email) && !isValidPassword(password)) {
-      setAlertMessage((prev) => {
-        prev.text = 'Please, check your e-mail and password';
-        return {
-          ...prev,
-        };
-      });
-    } else if (!isValidEmail(email)) {
-      setAlertMessage((prev) => {
-        prev.text = 'Please, check your e-mail';
-        return {
-          ...prev,
-        };
-      });
-    } else if (!isValidPassword(password)) {
-      setAlertMessage((prev) => {
-        prev.text = 'Please, check your password';
-        return {
-          ...prev,
-        };
-      });
-    } else if (isValidEmail(email) && isValidPassword(password) && rootStore.user.authStatus === statusAuth.auth) {
-      setAlertMessage((prev) => {
-        prev.show = 'hidden';
-        return {
-          ...prev,
-        };
-      });
+    await rootStore.userStore.login(email, password);
+    if (errorMessage.length > 0) {
+      inputStore._isError = true
     } else {
-      setAlertMessage((prev) => {
-        prev.show = 'show';
-        prev.text = 'Something wrong, not authorized, please try again';
-        return {
-          ...prev,
-        };
-      });
+      inputStore._isError = false
     }
-  }, [email, password]);
+  }, [email, inputStore, errorMessage.length, password]);
 
-  if (rootStore.user.isAuthorized) {
+  if (rootStore.userStore.isAuthorized) {
     navigate('/user');
   }
 
   return (
     <div className={styles.account}>
-      <div className={cn(styles.accountMessage, styles[alertMessage.show])}>
+      <div className={cn(styles.accountMessage, inputStore.isError ? styles.show : "")}>
         <Text view="p-20" className={styles.accountMessageText}>
-          {alertMessage.text}
+          {errorMessage}
         </Text>
         <Button
           className={styles.accountMessageButton}
-          onClick={() =>
-            setAlertMessage(() => {
-              return { ...alertMessage, show: 'hidden' };
-            })
-          }
+          onClick={() => inputStore._isError = false}
         >
           OK
         </Button>
@@ -104,14 +59,14 @@ function Login() {
           placeholder="E-mail"
           value={email.trim()}
           onChange={setEmail}
-          className={!isValidEmail(email) && email.length > 0 ? styles.accountInput : ''}
+          className={!isValidEmail(email) ? styles.accountInput : ''}
         />
         <Input
           type="password"
           placeholder="Password"
           value={password.trim()}
           onChange={setPassword}
-          className={!isValidPassword(password) && password.length > 0 ? styles.accountInput : ''}
+          className={!isValidPassword(password) ? styles.accountInput : ''}
         />
         <Button onClick={onClick} className={styles.accountButton}>
           Отправить

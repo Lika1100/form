@@ -2,8 +2,9 @@
 
 .user {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 300px;
+    grid-template-rows: 70% 50%;
+    grid-template-areas: "first first second"
+    "third fourth fifth";
     gap: 12px;
     padding-top: 12px;
     position: relative;
@@ -26,36 +27,31 @@
         }
 
         &__info {
-            grid-row: 1 / 3;
-            grid-column: 1 /3;
+            grid-area: first;
         }
 
         &__delivery {
-            grid-row: 1/ 3;
-            grid-column: 3 / 3;
+            grid-area: second;
             background-color: $main-bg;
             color: #000;
         }
 
         &__receipts {
+            grid-area: fifth;
             background-color: $button-primary-bg-hover;
             color: $main-bg;
-            grid-row: 3/ 3;
-            grid-column: 3 / 3;
         }
 
         &__discount {
+            grid-area: fourth;
             background-color: $main-bg;
             color: #000;
-            grid-row: 3/ 3;
-            grid-column: 2 / 3;
         }
 
         &__news {
+            grid-area: third;
             background-color: $button-primary-bg-active;
             color: $main-bg;
-            grid-row: 3/ 3;
-            grid-column: 0 / 3;
         }
     }
 

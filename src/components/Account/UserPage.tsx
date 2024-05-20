@@ -12,10 +12,10 @@ function UserPage() {
   return (
     <div className={styles.user}>
       <div className={cn(styles.userAccount, styles.userAccountInfo)}>
-        <img src={rootStore.user.user.avatar} className={styles.userAvatar} />
+        <img src={rootStore.userStore.user.avatar} className={styles.userAvatar} />
         <div>
-          <Text view="title">Name: {rootStore.user.user.name}</Text>
-          <Text view="p-20">E-mail: {rootStore.user.user.email}</Text>
+          <Text view="title">Name: {rootStore.userStore.user.name}</Text>
+          <Text view="p-20">E-mail: {rootStore.userStore.user.email}</Text>
         </div>
       </div>
       <div className={cn(styles.userAccount, styles.userAccountDelivery)}>

@@ -21,7 +21,7 @@ function addToCart({ title, price, image, id, getByID, add, update, getAll }: in
       update({ id, price, title, image, count: res.count + 1 });
     }
     getAll().then((res) => {
-      rootStore.cart.upDateCart(res);
+      rootStore.cartStore.upDateCart(res);
     });
   });
 }

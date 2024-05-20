@@ -22,9 +22,9 @@ const App = () => {
   useQueryParamsStoreInit();
   const { getAll } = useIndexedDB('cart');
   React.useEffect(() => {
-    rootStore.user.authUser();
+    rootStore.userStore.authUser();
     getAll().then((res) => {
-      rootStore.cart.upDateCart(res);
+      rootStore.cartStore.upDateCart(res);
     });
   }, [getAll]);
 
@@ -40,7 +40,7 @@ const App = () => {
           <Route
             path="/user"
             element={
-              <PrivateRoute isAuthorized={rootStore.user.isAuthorized}>
+              <PrivateRoute isAuthorized={rootStore.userStore.isAuthorized}>
                 <UserPage />
               </PrivateRoute>
             }

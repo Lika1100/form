@@ -17,8 +17,8 @@ import styles from './Cart.module.scss';
 function Cart() {
   const { getAll, update, deleteRecord, add, getByID } = useIndexedDB('cart');
 
-  const cart = rootStore.cart.cart;
-  const total = rootStore.cart.getSum()
+  const cart = rootStore.cartStore.cart;
+  const total = rootStore.cartStore.getSum()
 
   if (cart.length === 0) {
     return (
