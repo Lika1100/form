@@ -103,7 +103,7 @@ function Payment() {
             <Input placeholder="CVC" value={cardCvc} onChange={setCardCvc} />
           </div>
         </div>
-        <Button className={styles.paymentButton} disabled={!isAuth || !isValid} onClick={onPay}>
+        <Button className={styles.paymentButton} disabled={!isAuth || !isValid || total === 0} onClick={onPay}>
           Pay {total === 0 ? '' : `${total}$`}
         </Button>
       </form>
