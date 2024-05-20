@@ -89,9 +89,9 @@ module.exports = {
     isProd && new MediaQueryPlugin(),
     !isProd && new ReactRefreshWebpackPlugin(),
     new TsCheckerPlugin(),
-    new FaviconPlugin({
+    /* new FaviconPlugin({
       logo: "./src/favicon.png"
-    })
+    }) */
   ],
   resolve: {
     extensions: ['.tsx', '.jsx', '.js', '.ts', '.scss'],
