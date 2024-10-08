@@ -1,4 +1,4 @@
-name: Node.js CI
+name: form
 
 on: [push]
 
@@ -9,5 +9,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: npm run build --if-present
-      - run: npm test
+      - run: yarn lint
+      - run: prettier
+      - run: yarn test
