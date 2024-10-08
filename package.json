@@ -4,7 +4,7 @@
   "private": "true",
   "author": "Lika",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://Lika1100.github.io/form",
   "scripts": {
     "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development",
     "build": "cross-env NODE_ENV=production npx webpack --mode=production",

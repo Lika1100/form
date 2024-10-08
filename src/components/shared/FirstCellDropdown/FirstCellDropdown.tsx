@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { useRef } from 'react';
 import { Prefix } from 'store/models/prefix';
-import ArrowDropDown from '../../../components/icons/ArrowDropDown';
+import ArrowDropDown from '../../Icons/ArrowDropDown';
 import { useOutsideClick } from '../../../configs/useOutsideClick';
 import { FormStatus } from '../../../store/local/FormStore/types';
 

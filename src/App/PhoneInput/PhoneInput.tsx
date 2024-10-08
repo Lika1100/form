@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 
-import ErrorIcon from '../../components/icons/ErrorIcon';
-import SuccessIcon from '../../components/icons/SuccessIcon';
+import ErrorIcon from '../../components/Icons/ErrorIcon';
+import SuccessIcon from '../../components/Icons/SuccessIcon';
 import BaseCell from '../../components/shared/BaseCell';
 import FirstCellDropdown from '../../components/shared/FirstCellDropdown';
 
