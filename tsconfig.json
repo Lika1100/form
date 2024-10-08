@@ -10,8 +10,8 @@
       "strict": true,
       "strictNullChecks": true,
       "skipLibCheck": true,
-      "module": "es6",
-      "target": "es6",
+      "module": "es2022",
+      "target": "es2022",
       "moduleResolution": "node",
       "jsx": "react",
       "esModuleInterop": true,
@@ -29,6 +29,6 @@
 	}
     },
    
-    "include": ["src/**/*"], // какие файлы включены в проверку
+    "include": ["src/**/*", "CSSStub.ts"], // какие файлы включены в проверку
     "exclude": ["node_modules"] // какие файлы исключены
 }

@@ -75,7 +75,7 @@ module.exports = {
     ]
   },
   devServer: {
-    host: 'localhost', //если писать 127.0.0.1, то не грузятся картинки
+    host: 'localhost',
     port: 9000,
     hot: true,
     historyApiFallback: true
@@ -92,7 +92,7 @@ module.exports = {
     new TsCheckerPlugin()
   ],
   resolve: {
-    extensions: ['.tsx', '.jsx', '.js', '.ts', '.scss'],
+    extensions: ['.tsx', '.jsx', '.js', '.ts', '.scss', 'css'],
     alias: {
       components: path.join(srcPath, 'components'),
       configs: path.join(srcPath, 'configs'),

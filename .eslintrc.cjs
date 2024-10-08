@@ -16,16 +16,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: [
-    'eslint:recommended',
-    'prettier',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:react/recommended',
-    'plugin:import/typescript',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
-  ],
+  extends: ['eslint:recommended', 'prettier', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:react/recommended', 'plugin:import/typescript', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended', 'plugin:storybook/recommended'],
   plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
   rules: {
     "react/react-in-jsx-scope": "off",

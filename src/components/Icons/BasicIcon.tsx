@@ -18,3 +18,4 @@ const BasicIcon: React.FC<IconProps> = ({ children, ...props }) => {
   };
   
   export default BasicIcon;
+  

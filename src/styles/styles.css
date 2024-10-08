@@ -1,0 +1,53 @@
+:root {
+  --input-bg: #fff;
+  --text-primary: #000;
+  --text-secondary: rgba(0, 0, 0, 0.5);
+
+  --disabled-bg: rgba(0, 0, 0, 0.5);
+  --disabled: #f0f1f3;
+  --hover-color:  rgba(0, 0, 0, 0.1);
+
+  --color-black-transparent-25: rgba(0, 0, 0, 0.25);
+
+  --grey: #C2C9D1;
+  --blue: #3E66FB;
+  --green: #3CC13B;
+  --red: #F03738;
+}
+
+
+html,
+body {
+  font-family: 'Roboto';
+  scroll-behavior: smooth;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  text-decoration: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+figure,
+pre {
+  margin: 0;
+}

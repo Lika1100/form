@@ -1,0 +1,36 @@
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px 10px;
+}
+
+.content__title {
+  margin: 10px 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.content__phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.content__inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.content__alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-secondary);
+  z-index: -99;
+}

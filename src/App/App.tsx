@@ -1,56 +1,25 @@
+import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import { initDB, useIndexedDB } from 'react-indexed-db-hook';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Login from 'components/Account/Login';
-import UserPage from 'components/Account/UserPage';
-import Cart from 'components/Cart';
-import Categories from 'components/Categories';
-import Layout from 'components/Layout';
-import Payment from 'components/Payment';
-import PrivateRoute from 'components/PrivateRoute';
-import Product from 'components/Product';
-import ProductsByCategories from 'components/ProductsByCategories';
-import AboutPage from 'pages/AboutPage';
-import ProductsPage from 'pages/ProductsPage';
-import { useQueryParamsStoreInit } from 'store/RootStore/hooks/useQueryParams';
-import rootStore from 'store/RootStore/instance';
-import { DBConfig } from '../DBConfig';
 
-initDB(DBConfig);
+import { useLocalStore } from 'configs/useLocalStore';
+import { FormStore, FormStoreProvider } from 'store/local/FormStore';
+import PhoneInput from './PhoneInput/PhoneInput';
 
 const App = () => {
-  useQueryParamsStoreInit();
-  const { getAll } = useIndexedDB('cart');
-  React.useEffect(() => {
-    rootStore.userStore.authUser();
-    getAll().then((res) => {
-      rootStore.cartStore.upDateCart(res);
-    });
-  }, [getAll]);
+  const store = useLocalStore(() => new FormStore());
 
   return (
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<ProductsPage />} />
-          <Route path="/product/:productId" element={<Product />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/categoryId/:id" element={<ProductsByCategories />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/user"
-            element={
-              <PrivateRoute isAuthorized={rootStore.userStore.isAuthorized}>
-                <UserPage />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Route>
-      </Routes>
-  );
+  <FormStoreProvider store={store}>
+    <PhoneInput 
+      onChange={store.onChange} 
+      onKeyDown={store.onKeyDown} 
+      onFocus={store.onFocus}
+      prefixStore={store.prefixStore} 
+      formattedPhone={store.formattedPhone}
+      formStatus={store.formStatus}
+    />
+  </FormStoreProvider>
+  )
 };
 
-export default App;
+export default observer(App);

@@ -1,0 +1,31 @@
+.baseCell {
+  width: 32px;
+  height: 40px;
+  padding: 10px 8px;
+  text-align: center;
+  outline: 1px solid var(--grey);
+  background: var(--input-bg);
+  border: 0;
+  border-radius: 8px;
+}
+
+.baseCell:focus, .baseCell:hover {
+  outline: 1px solid var(--blue);
+}
+
+.baseCell_success {
+  outline-color: var(--green);
+}
+  
+.baseCell_error {
+  outline-color: var(--red);
+}
+
+.baseCell_disabled {
+  outline-color: var(--grey);
+  background-color: var(--disabled);
+}
+
+.baseCell_disabled:hover {
+  outline-color: var(--grey);
+}

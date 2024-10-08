@@ -1,0 +1,16 @@
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 0 8px;
+  cursor: pointer;
+  transition: background-color 0.2s liner;
+}
+
+.item:hover {
+  background-color: var(--hover-color);
+}
+
+.item__caption {
+  color: var(--text-secondary);
+}
