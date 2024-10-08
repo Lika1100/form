@@ -1,14 +1,12 @@
-name: form
-
-on: [push]
-
+name: Run Unit Tests and Lint Files
+"on": push
 jobs:
-  build:
-
+  unit_test-lint:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - run: npm run lint
-      - run: npm run prettier
-      - run: npm run test
+      - uses: actions/checkout@v2
+      - run: |
+              npm ci
+              npm run build
+              npm run test
+              npm run lint
