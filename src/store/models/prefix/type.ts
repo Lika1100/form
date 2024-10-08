@@ -3,4 +3,4 @@ export type Prefix = {
   name: string;
   emoji: string;
   prefix: string;
-}
+};

@@ -9,17 +9,17 @@ const App = () => {
   const store = useLocalStore(() => new FormStore());
 
   return (
-  <FormStoreProvider store={store}>
-    <PhoneInput 
-      onChange={store.onChange} 
-      onKeyDown={store.onKeyDown} 
-      onFocus={store.onFocus}
-      prefixStore={store.prefixStore} 
-      formattedPhone={store.formattedPhone}
-      formStatus={store.formStatus}
-    />
-  </FormStoreProvider>
-  )
+    <FormStoreProvider store={store}>
+      <PhoneInput
+        onChange={store.onChange}
+        onKeyDown={store.onKeyDown}
+        onFocus={store.onFocus}
+        prefixStore={store.prefixStore}
+        formattedPhone={store.formattedPhone}
+        formStatus={store.formStatus}
+      />
+    </FormStoreProvider>
+  );
 };
 
 export default observer(App);

@@ -20,14 +20,14 @@ export default {
         type: 'radio',
       },
     },
-  }
-}
+  },
+};
 
 const options = {
   formStatus: FormStatus.default,
   onChange: () => {},
   formattedPhone: ['(', '9', '9', '9', ')', '1', '1', '1', '-', '2', '2', '-', '3', '3'],
-}
+};
 
 export const PhoneInputComponent = (props: IFormStore) => {
   const [value, setValue] = useState<Prefix>(ALL_PREFIXES[0]);
@@ -36,15 +36,15 @@ export const PhoneInputComponent = (props: IFormStore) => {
     allPrefixes: ALL_PREFIXES,
     defaultPrefix: value,
     setPrefix: setValue,
-  }
+  };
 
   return (
-    <PhoneInput 
-      formattedPhone={options.formattedPhone} 
-      prefixStore={prefixStore} 
-      onChange={options.onChange} 
+    <PhoneInput
+      formattedPhone={options.formattedPhone}
+      prefixStore={prefixStore}
+      onChange={options.onChange}
       formStatus={props.formStatus}
       onKeyDown={props.onKeyDown}
     />
-  )
-}
+  );
+};

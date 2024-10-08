@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ILocalStore } from 'configs/useLocalStore';
 import * as React from 'react';
+import { ILocalStore } from 'configs/useLocalStore';
 
 export const createContextLocalStore = <T extends ILocalStore>(Constructor: new (...args: any[]) => T) => {
   const Context = React.createContext<T | null>(null);

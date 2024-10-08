@@ -10,8 +10,7 @@ import '@testing-library/jest-dom';
 
 type Props = {
   formStatus: FormStatus;
-}
-
+};
 
 const WrappedPhoneInput: React.FC<Props> = ({ formStatus }) => {
   const [value, setValue] = useState<Prefix>(ALL_PREFIXES[0]);
@@ -20,13 +19,13 @@ const WrappedPhoneInput: React.FC<Props> = ({ formStatus }) => {
     formStatus: formStatus,
     onChange: () => {},
     formattedPhone: ['(', '9', '9', '9', ')', '1', '1', '1', '-', '2', '2', '-', '3', '3'],
-  }
+  };
 
   const prefixStore = {
     allPrefixes: ALL_PREFIXES,
     defaultPrefix: value,
     setPrefix: setValue,
-  }
+  };
   return <PhoneInput {...options} prefixStore={prefixStore} />;
 };
 
@@ -35,8 +34,8 @@ describe('Тестирование компонента PhoneInput', () => {
     render(
       <>
         <button data-testid="outside">some</button>
-        <WrappedPhoneInput formStatus={FormStatus.default}/>
-      </>
+        <WrappedPhoneInput formStatus={FormStatus.default} />
+      </>,
     );
 
     const user = userEvent.setup();
@@ -51,18 +50,18 @@ describe('Тестирование компонента PhoneInput', () => {
 
     await user.click(firstCellDropdownElement);
 
-    const dropdownList = screen.getByTestId('list-dropdown')
+    const dropdownList = screen.getByTestId('list-dropdown');
 
     expect(dropdownList).toBeVisible();
 
-    const outside = screen.getByTestId('outside')
+    const outside = screen.getByTestId('outside');
     await user.click(outside);
 
     expect(dropdownList).not.toBeInTheDocument();
   });
 
   test('отображается dropdown, меняется значение в дропдауне', async () => {
-    render(<WrappedPhoneInput formStatus={FormStatus.default}/>);
+    render(<WrappedPhoneInput formStatus={FormStatus.default} />);
 
     const user = userEvent.setup();
 
@@ -73,7 +72,7 @@ describe('Тестирование компонента PhoneInput', () => {
     await user.click(firstCellDropdownElement);
 
     const dropdownList = screen.getByTestId('list-dropdown');
-    const dropDownItems = screen.getAllByTestId('list-item')
+    const dropDownItems = screen.getAllByTestId('list-item');
 
     expect(dropdownList).toBeVisible();
 
@@ -81,11 +80,10 @@ describe('Тестирование компонента PhoneInput', () => {
 
     expect(dropdownList).not.toBeVisible();
     expect(firstCellDropdownElement).toHaveTextContent(ALL_PREFIXES[2].prefix);
-
   });
 
   test('отображается dropdown и ячейки ввода, formState = disabled, dropdown не открывается, инпуты задизейблены', async () => {
-    render(<WrappedPhoneInput formStatus={FormStatus.disabled}/>);
+    render(<WrappedPhoneInput formStatus={FormStatus.disabled} />);
 
     const baseCells = screen.getAllByTestId('base-cell');
 
@@ -99,7 +97,7 @@ describe('Тестирование компонента PhoneInput', () => {
   });
 
   test('пользователь может вводить данные в ячейку и и стирать', async () => {
-    render(<WrappedPhoneInput formStatus={FormStatus.default}/>);
+    render(<WrappedPhoneInput formStatus={FormStatus.default} />);
 
     const user = userEvent.setup();
 
@@ -124,7 +122,7 @@ describe('Тестирование компонента PhoneInput', () => {
   });
 
   test('formStatus = error, отображается предупреждение', async () => {
-    render(<WrappedPhoneInput formStatus={FormStatus.error}/>);
+    render(<WrappedPhoneInput formStatus={FormStatus.error} />);
 
     const baseCells = screen.getAllByTestId('base-cell');
     const firstCellDropdownElement = screen.getByTestId('button-dropdown');
@@ -136,7 +134,7 @@ describe('Тестирование компонента PhoneInput', () => {
   });
 
   test('formStatus = success, отображается предупреждение', async () => {
-    render(<WrappedPhoneInput formStatus={FormStatus.success}/>);
+    render(<WrappedPhoneInput formStatus={FormStatus.success} />);
 
     const baseCells = screen.getAllByTestId('base-cell');
     const firstCellDropdownElement = screen.getByTestId('button-dropdown');
