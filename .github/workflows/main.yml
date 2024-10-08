@@ -9,4 +9,5 @@ jobs:
               npm ci
               npm run build
               yarn test
+              yarn prettier
               yarn lint
