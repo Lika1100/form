@@ -1,0 +1,14 @@
+name: form
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: yarn lint
+      - run: prettier
+      - run: yarn test
